@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 import { Routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { MockComponent } from './components/mock/mock.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UserService } from "./services/user.service.client";
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   // Declare components here
   declarations: [
     AppComponent,
-    MockComponent,
+    ProfileComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import { MockComponent } from './components/mock/mock.component';
     Routing
   ],
   // Client Side services here
-  providers: [ ],
+  providers: [ UserService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
