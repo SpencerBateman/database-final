@@ -32,7 +32,7 @@ module.exports = function(app) {
   // When this function is first called it checks to see if
   // the new liked user is a match if so, the relationship is
   // converted to a match
-  app.get('/api/user/:userId/like', likeUser);
+  app.put('/api/user/:userId/like', likeUser);
 
   function likeUser(req, res) {
   }
