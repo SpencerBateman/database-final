@@ -5,7 +5,7 @@ var UserSchema = mongoose.Schema ({
   firstName: String,
   age: Number,
   bio: String,
-  // This needs to have a new datatype
+  //Stored as a url
   photo: String,
   gender: String,
   lookingFor: String,

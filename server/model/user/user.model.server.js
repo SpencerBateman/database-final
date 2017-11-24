@@ -19,7 +19,4 @@ function updateUser(userId, user) {
   return UserModel.update(query, user);
 }
 
-function deleteUser() {
-}
-
 module.exports = UserModel;
