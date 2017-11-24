@@ -17,6 +17,7 @@ export class UserService {
   }
 
   createUser(user: any) {
+    console.log('client service print: ' + user);
     const url = 'http://localhost:3100/api/user';
     return this.http.post(url, user).map((response: Response) => {
       return response.json();
