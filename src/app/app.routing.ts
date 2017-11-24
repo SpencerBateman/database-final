@@ -1,11 +1,20 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { SwipeComponent } from './components/swipe/swipe.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { ConvoComponent } from './components/convo/convo.component';
 
 const APP_ROUTES: Routes = [
-  {path: '', component : RegisterComponent},
-  {path: 'user/:userId', component : ProfileComponent}
+  // Home
+  {path: '', component : LoginComponent},
+  {path: 'register', component : RegisterComponent},
+  {path: 'user/:userId', component : SwipeComponent},
+  {path: 'user/:userId/settings', component : SettingsComponent},
+  {path: 'user/:userId/matches', component : MatchesComponent},
+  {path: 'user/:userId/matches/:matchId', component : ConvoComponent}
 ];
 
 // Export the routes as module providers
