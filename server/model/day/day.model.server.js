@@ -6,7 +6,7 @@ DayModel.createDay = createDay;
 
 // This is called when a user is created but takes no arguments
 // Initializes and empty schedule
-function createDay(day) {
+function createDay() {
 
   // An empty day
   let init_day = {

@@ -1,6 +1,7 @@
 module.exports = function(app) {
 
   let userModel = require('../model/user/user.model.server');
+  let scheduleModel = require('../model/schedule/schedule.model.server');
 
   app.get('/api/user/:userId', getUserById);
   app.put('/api/user/:userId', updateUser);
@@ -55,7 +56,19 @@ module.exports = function(app) {
     userModel
       .createUser(user)
       .then(function(user) {
+
         console.log('user created');
+        console.log(user);
+
+        scheduleModel
+          .createSchedule(user._id)
+          .then(function(schedule) {
+
+            console.log('schedule created');
+            console.log(schedule);
+
+          });
+
         res.json(user);
       });
   }

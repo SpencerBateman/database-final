@@ -18,12 +18,14 @@ export class ScheduleService {
     });
   }
 
-  //findUserById(userId: string) {
-    //const url = 'http://localhost:3100/api/user/' + userId;
-    //return this.http.get(url).map((response: Response) => {
-      //return response.json();
-    //});
-  //}
+  getScheduleById(scheduleId: string) {
+    console.log(scheduleId);
+    const url = 'http://localhost:3100/api/schedule/' + scheduleId;
+    return this.http.get(url).map((response: Response) => {
+      console.log(response.json());
+      return response.json();
+    });
+  }
 
   //// returns the user in local users array whose username matches the parameter username
   //findUserByUsername(username: string) {
