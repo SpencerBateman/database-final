@@ -1,21 +1,11 @@
 <nav class="navbar navbar-dark bg-primary mb-3">
   <div class="container">
-    <a class="navbar-brand mx-auto" href="#">Account Settings</a>
+    <a [routerLink]="['/user', this.userId]"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    <a class="navbar-brand" href="#">Account Settings</a>
   </div>
 </nav>
-<!-- <p>{{user?.username}}</p>
-<p>{{user?.password}}</p>
-<p>{{user?.firstName}}</p>
-<p>{{user?.age}}</p>
-<p>{{user?.bio}}</p>
-<p>{{user?.photo}}</p>
-<p>{{user?.gender}}</p>
-<p>{{user?.lookingFor}}</p>
-<p>{{user?.rating}}</p> -->
-
-
 <div class='container'>
-  <form (ngSubmit)='register()' #f='ngForm'>
+  <form (ngSubmit)='updateUser()' #f='ngForm'>
     <fieldset class="form-group">
     <p>Username</p>
     <input name='username' [(ngModel)]='username' type='text' class='form-control' placeholder='Username' value={{user?.username}}>
@@ -30,8 +20,29 @@
     </fieldset>
     <fieldset class="form-group">
     <p>Age</p>
-    <input name='age' [(ngModel)]='age' type='number' class='form-control' placeholder='Age' type='{{user?.age}}'>
-  </fieldset>
+    <input name='age' [(ngModel)]='age' type='number' class='form-control' placeholder='Age' value="{{user?.age}}">
+    </fieldset>
+    <fieldset class="form-group">
+    <p>Bio</p>
+    <textarea name='bio' [(ngModel)]='bio' type='text' class='form-control' placeholder='Bio' value="{{user?.bio}}"></textarea>
+    </fieldset>
+    <fieldset class="form-group">
+      <p>Gender</p>
+      <select name='gender' class="custom-select" [(ngModel)]='gender'>
+        <option value="Gender" hidden selected>Gender</option>
+        <option value="Male" [ngValue]="Male">Male</option>
+        <option value="Female" [ngValue]="Female">Female</option>
+      </select>
+    </fieldset>
+    <fieldset class="form-group">
+      <p>Looking For</p>
+      <select name='lookingFor' class="custom-select" [(ngModel)]='lookingFor'>
+        <option value="Gender" hidden selected>Gender</option>
+        <option value="Male" [ngValue]="Male">Male</option>
+        <option value="Female" [ngValue]="Female">Female</option>
+      </select>
+    </fieldset>
+
     <button type='submit' class='btn btn-primary btn-block'>Update</button>
   </form>
 </div>
