@@ -14,10 +14,10 @@ module.exports = function(app) {
     let user = req.body;
     let userId = user._id;
     userModel
-    .updateUser(userId, user)
-    .then(function(user) {
-      res.json(user);
-    });
+      .updateUser(userId, user)
+      .then(function(user) {
+        res.json(user);
+      });
   }
 
   // Returns the user with the given id
@@ -52,29 +52,22 @@ module.exports = function(app) {
   // create user
   function createUser(req, res) {
     var user = req.body;
-    console.log(user);
     userModel
       .createUser(user)
       .then(function(user) {
-
-        console.log('user created');
-        console.log(user);
 
         scheduleModel
           .createSchedule(user._id)
           .then(function(schedule) {
 
-            console.log('schedule created');
-            console.log(schedule);
             user.schedule = schedule;
 
             userModel
-            .updateUser(user._id, user)
-            .then(function(user) {
-              console.log('user updated');
-              console.log(user);
-              res.json(user);
-            });
+              .updateUser(user._id, user)
+              .then(function(user) {
+
+                res.json(user);
+              });
           });
         res.json(user);
       });

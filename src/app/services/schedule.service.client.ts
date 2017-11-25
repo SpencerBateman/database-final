@@ -10,8 +10,6 @@ export class ScheduleService {
   constructor(private http: Http) { }
 
   createSchedule(schedule: any) {
-    console.log("hello client!")
-    console.log(schedule);
     const url = 'http://localhost:3100/api/schedule';
     return this.http.post(url, schedule).map((response: Response) => {
       return response.json();
@@ -19,13 +17,20 @@ export class ScheduleService {
   }
 
   getScheduleById(scheduleId: string) {
-    console.log(scheduleId);
     const url = 'http://localhost:3100/api/schedule/' + scheduleId;
     return this.http.get(url).map((response: Response) => {
-      console.log(response.json());
       return response.json();
     });
   }
+
+  updateSchedule(scheduleId: string, schedule: any) {
+    console.log(scheduleId);
+    const url = 'http://localhost:3100/api/schedule/' + scheduleId;
+    return this.http.put(url, schedule).map((response: Response) => {
+      return response.json();
+    });
+  }
+
 
   //// returns the user in local users array whose username matches the parameter username
   //findUserByUsername(username: string) {
@@ -44,12 +49,5 @@ export class ScheduleService {
     //});
   //}
 
-  //createUser(user: any) {
-    //console.log('client service print: ' + user);
-    //const url = 'http://localhost:3100/api/user';
-    //return this.http.post(url, user).map((response: Response) => {
-      //return response.json();
-    //});
-  //}
 }
 

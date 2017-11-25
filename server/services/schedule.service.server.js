@@ -5,6 +5,18 @@ module.exports = function(app) {
 
   app.post('/api/schedule', createSchedule);
   app.get('/api/schedule/:scheduleId', getScheduleById);
+  app.put('/api/schedule/:scheduleId', updateSchedule);
+
+  function updateSchedule(req, res) {
+    let schedule = req.body;
+    let scheduleId = req.params['scheduleId'];
+    scheduleModel
+      .updateSchedule(scheduleId, schedule)
+      .then(function(schedule) {
+        console.log(schedule);
+        res.json(schedule);
+      });
+  }
 
   function createSchedule(req, res) {
     let user = req.body;
@@ -16,13 +28,10 @@ module.exports = function(app) {
 
   function getScheduleById(req, res) {
     let scheduleId = req.params['scheduleId'];
-    console.log(scheduleId);
 
     scheduleModel
       .getScheduleById(scheduleId)
       .then(function(schedule) {
-        console.log('return');
-        console.log(schedule);
         res.json(schedule);
       });
   }

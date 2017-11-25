@@ -6,6 +6,7 @@ var DayModel = mongoose.model("DayModel", DaySchema);
 
 ScheduleModel.createSchedule = createSchedule;
 ScheduleModel.getScheduleById = getScheduleById;
+ScheduleModel.updateSchedule = updateSchedule;
 
 // Initializes and empty schedule
 async function createSchedule(userId) {
@@ -73,8 +74,14 @@ async function createSchedule(userId) {
   return ScheduleModel.create(emptySchedule);
 }
 
-function getScheduleById(scheduleId) {
+function updateSchedule(scheduleId, schedule) {
+  let query = {_id: scheduleId};
   console.log(scheduleId);
+  console.log(schedule);
+  return ScheduleModel.update(query, schedule);
+}
+
+function getScheduleById(scheduleId) {
   return ScheduleModel.findOne({_id: scheduleId});
 }
 

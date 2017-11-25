@@ -12,6 +12,7 @@ import { ScheduleService } from '../../services/schedule.service.client';
 export class ScheduleComponent implements OnInit {
   userId: string;
   user: any;
+  scheduleId: string;
   schedule: any;
 
   constructor(private userService : UserService, private scheduleService : ScheduleService, private router : Router, private activatedRoute: ActivatedRoute) { }
@@ -21,12 +22,18 @@ export class ScheduleComponent implements OnInit {
       this.userId = params['userId'];
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
-        console.log(user);
+        this.scheduleId = user.schedule;
         this.scheduleService.getScheduleById(user.schedule).subscribe((schedule: any) => {
+          console.log(user);
           console.log(schedule);
         });
       });
     });
   }
 
+  saveSchedule() {
+    this.scheduleService.updateSchedule(this.scheduleId, this.schedule).subscribe((schedule: any) => {
+      console.log(schedule);
+    });
+  }
 }
