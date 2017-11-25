@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service.client';
+import { ScheduleService } from '../../services/schedule.service.client';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   gender: string;
   lookingFor: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private scheduleService: ScheduleService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,7 +26,15 @@ export class RegisterComponent implements OnInit {
   register() {
     const new_user = {username: this.username, password: this.password, firstName: this.firstName, age: this.age};
     this.userService.createUser(new_user).subscribe((user) => {
-        this.router.navigate(['user/' + user._id]);
+      console.log('hello');
+      let init_schedule = {_user: user};
+      this.scheduleService.createSchedule(init_schedule).subscribe((schedule) => {
+        console.log('schedule return');
+        user.schedule = schedule;
+        this.userService.updateUser(user._id, user).subscribe((final_user) => {
+          this.router.navigate(['user/' + user._id + '/schedule']);
+        });
+      });
     });
   }
 }

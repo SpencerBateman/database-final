@@ -16,6 +16,15 @@ export class UserService {
     });
   }
 
+  updateUser(userId: string, user: any) {
+    console.log(user);
+    console.log('update client');
+    const url = 'http://localhost:3100/api/user/' + userId;
+    return this.http.put(url, user).map((response: Response) => {
+      return response.json();
+    });
+  }
+
   // returns the user in local users array whose username matches the parameter username
   findUserByUsername(username: string) {
     const url = 'http://localhost:3100/api/user?username=' + username;

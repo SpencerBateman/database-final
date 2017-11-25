@@ -3,10 +3,19 @@ module.exports = function(app) {
   let userModel = require('../model/user/user.model.server');
 
   app.get('/api/user/:userId', getUserById);
+  app.put('/api/user/:userId', updateUser);
   app.get('/api/user', findAllUser);
   app.get('/api/user/:userId/swipe', getAvailableUsers);
   app.put('/api/user/:userId/like', likeUser);
   app.post('/api/user', createUser);
+
+  function updateUser(req, res) {
+    let user = req.body;
+    let userId = user._id;
+    console.log('updateUser');
+    console.log(user);
+    console.log(userId);
+  }
 
   // Returns the user with the given id
   function getUserById(req, res) {
@@ -44,6 +53,7 @@ module.exports = function(app) {
     userModel
       .createUser(user)
       .then(function(user) {
+        console.log('user created');
         res.json(user);
       });
   }

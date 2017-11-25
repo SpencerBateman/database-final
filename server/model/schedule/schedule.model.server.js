@@ -1,41 +1,60 @@
 var mongoose = require('mongoose');
 var ScheduleSchema = require('./schedule.schema.server');
 var ScheduleModel = mongoose.model("ScheduleModel", ScheduleSchema);
+var DaySchema = require('../day/day.schema.server');
+var DayModel = mongoose.model("DayModel", DaySchema);
 
 ScheduleModel.createSchedule = createSchedule;
 ScheduleModel.getUserSchedule = getUserSchedule;
 
 // This is called when a user is created but takes no arguments
 // Initializes and empty schedule
-function createSchedule() {
-
-  // An empty day
-  let day = {
-    "9": false,
-    "10": false,
-    "11": false,
-    "12": false,
-    "13": false,
-    "14": false,
-    "15": false,
-    "16": false,
-    "17": false,
-    "18": false,
-    "19": false,
-    "20": false,
-    "21": false,
+function createSchedule(user) {
+  let blank_day = {
+    9: Boolean,
+    10: Boolean,
+    11: Boolean,
+    12: Boolean,
+    13: Boolean,
+    14: Boolean,
+    15: Boolean,
+    16: Boolean,
+    17: Boolean,
+    18: Boolean,
+    19: Boolean,
+    20: Boolean,
+    21: Boolean
   };
-
-  // An Empty Schedule
-  let emptySchedule = {
-    "mon": day,
-    "tue": day,
-    "wed": day,
-    "thu": day,
-    "fri": day,
-    "sat": day,
-    "sun": day
-  };
-
-  return ScheduleModel.create(emptySchedule);
+  return DayModel.create(blank_day, function(err, mon) {
+    return DayModel.create(blank_day, function(err, tue) {
+      return DayModel.create(blank_day, function(err, wed) {
+        return DayModel.create(blank_day, function(err, thu) {
+          return DayModel.create(blank_day, function(err, fri) {
+            return DayModel.create(blank_day, function(err, sat) {
+              return DayModel.create(blank_day, function(err, sun) {
+                // An Empty Schedule
+                let emptySchedule = {
+                  "_user": user._id,
+                  mon: mon,
+                  tue: tue,
+                  wed: wed,
+                  thu: thu,
+                  fri: fri,
+                  sat: sat,
+                  sun: sun
+                };
+                return ScheduleModel.create(emptySchedule);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
 }
+
+function getUserSchedule() {
+
+}
+
+module.exports = ScheduleModel;
