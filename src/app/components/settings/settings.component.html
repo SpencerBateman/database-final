@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-primary mb-3">
   <div class="container">
-    <a [routerLink]="['/user', this.userId]"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-    <a class="navbar-brand" href="#">Account Settings</a>
+    <a class="pull-left" [routerLink]="['/user', this.userId]"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    <a class="navbar-brand mx-auto" href="#">Account Settings</a>
   </div>
 </nav>
 <div class='container'>
@@ -28,18 +28,16 @@
     </fieldset>
     <fieldset class="form-group">
       <p>Gender</p>
-      <select name='gender' class="custom-select" [(ngModel)]='gender'>
-        <option value="Gender" hidden selected>Gender</option>
-        <option value="Male" [ngValue]="Male">Male</option>
-        <option value="Female" [ngValue]="Female">Female</option>
+      <select name='gender' class="custom-select w-100" [(ngModel)]='gender'>
+        <option disabled [ngValue]="null">Select a gender</option>
+        <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
       </select>
     </fieldset>
     <fieldset class="form-group">
       <p>Looking For</p>
-      <select name='lookingFor' class="custom-select" [(ngModel)]='lookingFor'>
-        <option value="Gender" hidden selected>Gender</option>
-        <option value="Male" [ngValue]="Male">Male</option>
-        <option value="Female" [ngValue]="Female">Female</option>
+      <select name='lookingFor' class="custom-select w-100" [(ngModel)]='lookingFor'>
+        <option disabled [ngValue]="null">Select a gender</option>
+        <option *ngFor="let lookingFor of lookingFors" [ngValue]="lookingFor">{{lookingFor}}</option>
       </select>
     </fieldset>
 

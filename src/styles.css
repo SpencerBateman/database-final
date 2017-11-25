@@ -2,6 +2,7 @@ body {
   font-family: 'Work Sans', sans-serif !important;
 }
 
-i {
+i.fa {
   color: white;
+  font-size: 20px;
 }
