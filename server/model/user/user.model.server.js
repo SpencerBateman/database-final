@@ -4,6 +4,7 @@ var UserModel = mongoose.model("UserModel", UserSchema);
 
 UserModel.createUser = createUser;
 UserModel.findUserById = findUserById;
+UserModel.findUserByCredentials = findUserByCredentials;
 UserModel.updateUser = updateUser;
 
 function createUser(user) {
@@ -12,6 +13,10 @@ function createUser(user) {
 
 function findUserById(userId) {
   return UserModel.findOne({_id: userId});
+}
+
+function findUserByCredentials(username, password) {
+  return UserModel.findOne({username: username, password: password});
 }
 
 function updateUser(userId, user) {
