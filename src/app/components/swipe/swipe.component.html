@@ -1,6 +1,17 @@
 <nav class="navbar navbar-dark bg-primary mb-3">
   <div class="container">
+    <a class="pull-left" [routerLink]="['/user', this.userId, 'settings']"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
     <a class="navbar-brand mx-auto" href="#">Database Project</a>
-    <a class="pull-right" [routerLink]="['/user', this.userId, 'settings']"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+    <a class="pull-right" [routerLink]="['/user', this.userId, 'settings']"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
   </div>
 </nav>
+<div class="container">
+  <div class="user">
+    <div class="user--image">
+      <img src="https://scontent.fphl2-3.fna.fbcdn.net/v/t1.0-9/12038511_911918292194732_1632590114908054085_n.jpg?oh=00a69ecbba825e5fd4ad79e54789e398&oe=5A95EC4C" style="width: 100%;">
+    </div>
+    <div class="user--info">
+      <h3>{{user?.firstName}}, {{user?.age}}</h3>
+    </div>
+  </div>
+</div>
