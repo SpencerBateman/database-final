@@ -1,3 +1,8 @@
+<nav class="navbar navbar-dark bg-primary mb-3">
+  <div class="container">
+    <a class="navbar-brand mx-auto" href="#">Database Project</a>
+  </div>
+</nav>
 <div class='container'>
   <h1>Register</h1>
   <form (ngSubmit)='register()' #f='ngForm'>
@@ -14,12 +19,24 @@
     <input name='firstName' [(ngModel)]='firstName' type='text' class='form-control' placeholder='First Name'>
     </fieldset>
     <fieldset class="form-group">
-    <p>Last Name</p>
-    <input name='lastName' [(ngModel)]='lastName' type='text' class='form-control' placeholder='Last Name'>
-    </fieldset>
-    <fieldset class="form-group">
     <p>Age</p>
     <input name='age' [(ngModel)]='age' type='number' class='form-control' placeholder='Age'>
+  </fieldset>
+  <fieldset class="form-group">
+  <p>Bio</p>
+  <input name='bio' [(ngModel)]='bio' type='text' class='form-control' placeholder='Bio'>
+  </fieldset>
+  <fieldset class="form-group">
+  <p>Gender</p>
+  <select class="custom-select" [(ngModel)]='gender'>
+    <option value="Gender" hidden selected>Gender</option>
+    <option value="Male" [ngValue]="Male">Male</option>
+    <option value="Female" [ngValue]="Female">Female</option>
+</select>
+  </fieldset>
+  <fieldset class="form-group">
+  <p>Looking For</p>
+  <input name='lookingFor' [(ngModel)]='lookingFor' type='text' class='form-control' placeholder='Looking For'>
   </fieldset>
     <button type='submit' class='btn btn-primary btn-block'>Register</button>
   </form>

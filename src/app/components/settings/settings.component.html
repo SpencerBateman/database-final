@@ -1,4 +1,9 @@
-<p>{{user?.username}}</p>
+<nav class="navbar navbar-dark bg-primary mb-3">
+  <div class="container">
+    <a class="navbar-brand mx-auto" href="#">Account Settings</a>
+  </div>
+</nav>
+<!-- <p>{{user?.username}}</p>
 <p>{{user?.password}}</p>
 <p>{{user?.firstName}}</p>
 <p>{{user?.age}}</p>
@@ -6,4 +11,27 @@
 <p>{{user?.photo}}</p>
 <p>{{user?.gender}}</p>
 <p>{{user?.lookingFor}}</p>
-<p>{{user?.rating}}</p>
+<p>{{user?.rating}}</p> -->
+
+
+<div class='container'>
+  <form (ngSubmit)='register()' #f='ngForm'>
+    <fieldset class="form-group">
+    <p>Username</p>
+    <input name='username' [(ngModel)]='username' type='text' class='form-control' placeholder='Username' value={{user?.username}}>
+    </fieldset>
+    <fieldset class="form-group">
+    <p>Password</p>
+    <input name='password' [(ngModel)]='password' type='password' class='form-control' placeholder='Password' value='{{user?.password}}'>
+    </fieldset>
+    <fieldset class="form-group">
+    <p>First Name</p>
+    <input name='firstName' [(ngModel)]='firstName' type='text' class='form-control' placeholder='First Name' value="{{user?.firstName}}">
+    </fieldset>
+    <fieldset class="form-group">
+    <p>Age</p>
+    <input name='age' [(ngModel)]='age' type='number' class='form-control' placeholder='Age' type='{{user?.age}}'>
+  </fieldset>
+    <button type='submit' class='btn btn-primary btn-block'>Update</button>
+  </form>
+</div>
