@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   register() {
     const new_user = {username: this.username, password: this.password, firstName: this.firstName, age: this.age};
     this.userService.createUser(new_user).subscribe((user) => {
-      console.log(user);
+        this.router.navigate(['user/' + user._id]);
     });
   }
 }
