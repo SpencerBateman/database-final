@@ -47,15 +47,7 @@ export class RegisterComponent implements OnInit {
     };
     console.log('creating user from component');
     this.userService.createUser(new_user).subscribe((user) => {
-
-      // let init_schedule = {_user: user};
-      // this.scheduleService.createSchedule(init_schedule).subscribe((schedule) => {
-      //   console.log('schedule return');
-      //   user.schedule = schedule;
-      //   this.userService.updateUser(user._id, user).subscribe((final_user) => {
-      //     this.router.navigate(['user/' + user._id + '/schedule']);
-      //   });
-      // });
+      this.router.navigate(['user/' + user._id + '/schedule']);
     });
   }
 }

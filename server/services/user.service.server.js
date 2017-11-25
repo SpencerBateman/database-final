@@ -66,9 +66,16 @@ module.exports = function(app) {
 
             console.log('schedule created');
             console.log(schedule);
+            user.schedule = schedule;
 
+            userModel
+            .updateUser(user._id, user)
+            .then(function(user) {
+              console.log('user updated');
+              console.log(user);
+              res.json(user);
+            });
           });
-
         res.json(user);
       });
   }
