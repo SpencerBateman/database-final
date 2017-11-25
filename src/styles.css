@@ -6,3 +6,16 @@ i.fa {
   color: white;
   font-size: 20px;
 }
+
+.hp-background {
+  background-image: url('database_pattern.png');
+  height: 100vh;
+  background-size: contain;
+}
+
+.user--image img {
+  object-fit: cover;
+  max-width: 300px;
+  height: 300px;
+  margin-top: 10px;
+}
