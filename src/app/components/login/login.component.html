@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-primary mb-3">
   <div class="container">
-    <a class="navbar-brand mx-auto" href="#">Database Project</a>
+    <a class="navbar-brand mx-auto" [routerLink]="['']">Database Project</a>
   </div>
 </nav>
 <div class='container'>
@@ -18,6 +18,6 @@
       <input name='password' [(ngModel)]='password' type='password' class='form-control' placeholder='Password'>
     </fieldset>
     <button type='submit' class='btn btn-primary btn-block'>Login</button>
-    <p class="text-center">Not a member? <a > Register here.</a></p>
+    <p class="text-center">Not a member? <a [routerLink]="['/register']"> Register here.</a></p>
   </form>
 </div>
