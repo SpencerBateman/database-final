@@ -16,6 +16,23 @@ export class UserService {
     });
   }
 
+  // returns the user in local users array whose username matches the parameter username
+  findUserByUsername(username: string) {
+    const url = 'http://localhost:3100/api/user?username=' + username;
+    return this.http.get(url).map((response: Response) => {
+      return response.json();
+    });
+  }
+
+  //returns the user whose username and password match the username and password parameters
+  findUserByCredentials(username: string, password: string) {
+    var url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
+
+    return this.http.get(url).map((response: Response) => {
+      return response.json();
+    });
+  }
+
   createUser(user: any) {
     console.log('client service print: ' + user);
     const url = 'http://localhost:3100/api/user';
