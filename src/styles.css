@@ -1,3 +1,8 @@
 body {
   font-family: 'Work Sans', sans-serif !important;
 }
+
+i.fa {
+  color: white;
+  font-size: 20px;
+}

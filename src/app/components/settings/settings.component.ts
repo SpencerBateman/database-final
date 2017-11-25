@@ -12,6 +12,10 @@ import { UserService } from '../../services/user.service.client';
 export class SettingsComponent implements OnInit {
   userId: string;
   user: any;
+  gender: string;
+  lookingFor: string;
+  genders : string[];
+  lookingFors : string[];
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -21,7 +25,15 @@ export class SettingsComponent implements OnInit {
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
         console.log(user);
+        this.updateGenders();
       });
     });
+  }
+
+  updateGenders() {
+    this.gender = this.user.gender;
+    this.lookingFor = this.user.lookingFor;
+    this.genders = ['Female', 'Male'];
+    this.lookingFors = ['Female', 'Male'];
   }
 }

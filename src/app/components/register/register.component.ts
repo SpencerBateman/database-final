@@ -17,14 +17,20 @@ export class RegisterComponent implements OnInit {
   bio: string;
   gender: string;
   lookingFor: string;
+  genders : string[];
+  lookingFors : string[];
 
   constructor(private scheduleService: ScheduleService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.gender = null;
+    this.lookingFor = null;
+    this.genders = ['Female', 'Male'];
+    this.lookingFors = ['Female', 'Male'];
   }
 
   register() {
-    const new_user = {username: this.username, password: this.password, firstName: this.firstName, age: this.age};
+    const new_user = {username: this.username, password: this.password, firstName: this.firstName, age: this.age, bio: this.bio, gender: this.gender, lookingFor: this.lookingFor};
     this.userService.createUser(new_user).subscribe((user) => {
       console.log('hello');
       let init_schedule = {_user: user};

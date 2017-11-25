@@ -24,19 +24,21 @@
     </fieldset>
     <fieldset class="form-group">
       <p>Bio</p>
-      <input name='bio' [(ngModel)]='bio' type='text' class='form-control' placeholder='Bio'>
+      <textarea name='bio' [(ngModel)]='bio' type='text' class='form-control' placeholder='Bio'></textarea>
     </fieldset>
     <fieldset class="form-group">
       <p>Gender</p>
-      <select name='gender' class="custom-select" [(ngModel)]='gender'>
-        <option value="Gender" hidden selected>Gender</option>
-        <option value="Male" [ngValue]="Male">Male</option>
-        <option value="Female" [ngValue]="Female">Female</option>
+      <select name='gender' class="custom-select w-100" [(ngModel)]='gender'>
+        <option disabled [ngValue]="null">Select a gender</option>
+        <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
       </select>
     </fieldset>
     <fieldset class="form-group">
       <p>Looking For</p>
-      <input name='lookingFor' [(ngModel)]='lookingFor' type='text' class='form-control' placeholder='Looking For'>
+      <select name='lookingFor' class="custom-select w-100" [(ngModel)]='lookingFor'>
+        <option disabled [ngValue]="null">Select a gender</option>
+        <option *ngFor="let lookingFor of lookingFors" [ngValue]="lookingFor">{{lookingFor}}</option>
+      </select>
     </fieldset>
     <button type='submit' class='btn btn-primary btn-block'>Register</button>
   </form>
