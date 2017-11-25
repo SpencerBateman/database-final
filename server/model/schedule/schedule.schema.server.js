@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var ScheduleSchema = mongoose.Schema ({
+  _user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
   mon: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},
   tue: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},
   wed: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},

@@ -1,12 +1,24 @@
 module.exports = function(app) {
 
   let userModel = require('../model/user/user.model.server');
+  let scheduleModel = require('../model/schedule/schedule.model.server');
 
   app.get('/api/user/:userId', getUserById);
+  app.put('/api/user/:userId', updateUser);
   app.get('/api/user', findAllUser);
   app.get('/api/user/:userId/swipe', getAvailableUsers);
   app.put('/api/user/:userId/like', likeUser);
   app.post('/api/user', createUser);
+
+  function updateUser(req, res) {
+    let user = req.body;
+    let userId = user._id;
+    userModel
+    .updateUser(userId, user)
+    .then(function(user) {
+      res.json(user);
+    });
+  }
 
   // Returns the user with the given id
   function getUserById(req, res) {
@@ -44,6 +56,19 @@ module.exports = function(app) {
     userModel
       .createUser(user)
       .then(function(user) {
+
+        console.log('user created');
+        console.log(user);
+
+        scheduleModel
+          .createSchedule(user._id)
+          .then(function(schedule) {
+
+            console.log('schedule created');
+            console.log(schedule);
+
+          });
+
         res.json(user);
       });
   }
