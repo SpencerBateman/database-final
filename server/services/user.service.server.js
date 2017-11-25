@@ -12,9 +12,11 @@ module.exports = function(app) {
   function updateUser(req, res) {
     let user = req.body;
     let userId = user._id;
-    console.log('updateUser');
-    console.log(user);
-    console.log(userId);
+    userModel
+    .updateUser(userId, user)
+    .then(function(user) {
+      res.json(user);
+    });
   }
 
   // Returns the user with the given id
