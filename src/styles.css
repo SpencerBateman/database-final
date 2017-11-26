@@ -19,3 +19,20 @@ i.fa {
   height: 300px;
   margin-top: 10px;
 }
+
+.schedule__day {
+  margin: 20px 0px;
+
+}
+
+.schedule__hour--active {
+  background: #2610e6;
+  color: white;
+  border: 1px solid white;
+}
+
+.schedule__hour {
+  border: 1px solid #2610e6;
+  /*border-radius: 500rem;*/
+  text-align: center;
+}
