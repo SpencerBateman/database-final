@@ -10,7 +10,7 @@ import { ScheduleService } from '../../services/schedule.service.client';
 })
 
 export class RegisterComponent implements OnInit {
-  username: string;
+  email: string;
   password: string;
   firstName: string;
   age: number;
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const new_user = {
-      email: this.username,
+      email: this.email,
       password: this.password,
       firstName: this.firstName,
       age: this.age,
