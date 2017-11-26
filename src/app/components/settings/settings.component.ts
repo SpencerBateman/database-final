@@ -16,7 +16,10 @@ export class SettingsComponent implements OnInit {
   lookingFor: string;
   genders : string[];
   lookingFors : string[];
+  email: string;
   firstName: string;
+  age: string;
+  bio: string;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -39,7 +42,12 @@ export class SettingsComponent implements OnInit {
   }
 
   updateUser() {
+    this.user.email = this.email;
     this.user.firstName = this.firstName;
+    this.user.age = this.age;
+    this.user.bio = this.bio;
+    this.user.gender = this.gender;
+    this.user.lookingFor = this.lookingFor;
     this.userService.updateUser(this.userId, this.user).subscribe(() => {
       this.router.navigate(['user/' + this.user._id]);
     });
