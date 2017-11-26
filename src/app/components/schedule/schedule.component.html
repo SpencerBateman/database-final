@@ -3,18 +3,20 @@
   </div>
 </nav>
 <div class='container'>
-  {{userId}}
-  {{scheduleId}}
+  <!-- {{userId}}
+  {{scheduleId}} -->
   <h3>Monday</h3>
-  <h6>9 - 10am: {{monday?._9}}</h6>
-  <h6>10 - 11am: {{monday?._10}}</h6>
-  <h6>11 - 12pm: {{monday?._11}}</h6>
-  <h6>12 - 1pm: {{monday?._12}}</h6>
-  <h6>1 - 2pm: {{monday?._13}}</h6>
-  <h6>2 - 3pm: {{monday?._14}}</h6>
-  <h6>3 - 4pm: {{monday?._15}}</h6>
-  <h6>4 - 5pm: {{monday?._16}}</h6>
-  <h6>5 - 6pm: {{monday?._17}}</h6>
+  <div class="row">
+    <div [ngClass]="{'schedule__hour--active' : monday?._9}" class="col-4 schedule--hour"><p>9AM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._10}" class="col-4 schedule__hour"><p>10AM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._11}" class="col-4 schedule__hour"><p>11AM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._12}" class="col-4 schedule__hour"><p>12PM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._13}" class="col-4 schedule__hour"><p>1PM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._14}" class="col-4 schedule__hour"><p>2PM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._15}" class="col-4 schedule__hour"><p>3PM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._16}" class="col-4 schedule__hour"><p>4PM</p></div>
+    <div [ngClass]="{'schedule__hour--active' : monday?._17}" class="col-4 schedule__hour"><p>5PM</p></div>
+  </div>
+
   <button (click)="saveSchedule()" type='submit' class='btn btn-primary btn-block'>Save Schedule</button>
 </div>
-
