@@ -8,9 +8,11 @@ import { UserService } from '../../services/user.service.client';
   templateUrl: './swipe.component.html',
   styleUrls: ['./swipe.component.css']
 })
+
 export class SwipeComponent implements OnInit {
   userId: string;
   user: any;
+  currentListOfUsers: any;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -19,9 +21,11 @@ export class SwipeComponent implements OnInit {
       this.userId = params['userId'];
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
-        console.log(user);
+        this.userService.getPotentialMatches(this.userId).subscribe((users: any) => {
+          this.currentListOfUsers = users;
+          console.log(this.currentListOfUsers);
+        });
       });
     });
   }
-
 }

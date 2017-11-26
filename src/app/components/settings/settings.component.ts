@@ -13,10 +13,10 @@ export class SettingsComponent implements OnInit {
   userId: string;
   user: any;
   gender: string;
+  firstName: string;
   lookingFor: string;
   genders : string[];
   lookingFors : string[];
-  firstName: string;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 

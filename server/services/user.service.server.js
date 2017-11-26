@@ -9,6 +9,24 @@ module.exports = function(app) {
   app.get('/api/user/:userId/swipe', getAvailableUsers);
   app.put('/api/user/:userId/like', likeUser);
   app.post('/api/user', createUser);
+  app.get('/api/user/suitors/:userId', getPotentialMatches)
+
+  function getPotentialMatches(req, res) {
+    let userId = req.params['userId'];
+    userModel
+      .findUserById(userId)
+      .then((user) => {
+        userModel.findAllUser()
+          .then((users) => {
+            let potential = users.filter(function (u) {
+              return u.gender == user.lookingFor &&
+                u.lookingFor == user.gender &&
+                u._id != user._id;
+            });
+            res.json(potential);
+          });
+      });
+  }
 
   function updateUser(req, res) {
     let user = req.body;
