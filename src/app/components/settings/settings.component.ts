@@ -16,6 +16,7 @@ export class SettingsComponent implements OnInit {
   lookingFor: string;
   genders : string[];
   lookingFors : string[];
+  firstName: string;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -24,8 +25,8 @@ export class SettingsComponent implements OnInit {
       this.userId = params['userId'];
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
-        console.log(user);
         this.updateGenders();
+        this.firstName = user.firstName;
       });
     });
   }
@@ -35,5 +36,12 @@ export class SettingsComponent implements OnInit {
     this.lookingFor = this.user.lookingFor;
     this.genders = ['Female', 'Male'];
     this.lookingFors = ['Female', 'Male'];
+  }
+
+  updateUser() {
+    this.user.firstName = this.firstName;
+    this.userService.updateUser(this.userId, this.user).subscribe(() => {
+      this.router.navigate(['user/' + this.user._id]);
+    });
   }
 }
