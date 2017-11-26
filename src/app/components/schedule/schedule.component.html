@@ -5,6 +5,16 @@
 <div class='container'>
   {{userId}}
   {{scheduleId}}
+  <h3>Monday</h3>
+  <h6>9 - 10am: {{monday?._9}}</h6>
+  <h6>10 - 11am: {{monday?._10}}</h6>
+  <h6>11 - 12pm: {{monday?._11}}</h6>
+  <h6>12 - 1pm: {{monday?._12}}</h6>
+  <h6>1 - 2pm: {{monday?._13}}</h6>
+  <h6>2 - 3pm: {{monday?._14}}</h6>
+  <h6>3 - 4pm: {{monday?._15}}</h6>
+  <h6>4 - 5pm: {{monday?._16}}</h6>
+  <h6>5 - 6pm: {{monday?._17}}</h6>
   <button (click)="saveSchedule()" type='submit' class='btn btn-primary btn-block'>Save Schedule</button>
 </div>
 

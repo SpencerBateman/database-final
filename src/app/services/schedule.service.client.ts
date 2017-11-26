@@ -23,15 +23,6 @@ export class ScheduleService {
     });
   }
 
-  updateSchedule(scheduleId: string, schedule: any) {
-    console.log(scheduleId);
-    const url = 'http://localhost:3100/api/schedule/' + scheduleId;
-    return this.http.put(url, schedule).map((response: Response) => {
-      return response.json();
-    });
-  }
-
-
   //// returns the user in local users array whose username matches the parameter username
   //findUserByUsername(username: string) {
     //const url = 'http://localhost:3100/api/user?username=' + username;

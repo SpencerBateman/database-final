@@ -6,22 +6,20 @@
 
 var mongoose = require('mongoose');
 var DaySchema = mongoose.Schema ({
-  9: Boolean,
-  10: Boolean,
-  11: Boolean,
-  12: Boolean,
-  13: Boolean,
-  14: Boolean,
-  15: Boolean,
-  16: Boolean,
-  17: Boolean,
-  18: Boolean,
-  19: Boolean,
-  20: Boolean,
-  21: Boolean
+  _9: Boolean,
+  _10: Boolean,
+  _11: Boolean,
+  _12: Boolean,
+  _13: Boolean,
+  _14: Boolean,
+  _15: Boolean,
+  _16: Boolean,
+  _17: Boolean,
+  _18: Boolean,
+  _19: Boolean,
+  _20: Boolean,
+  _21: Boolean
 
 }, {collection: 'day'});
 
 module.exports = DaySchema;
-
-
