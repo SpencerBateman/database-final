@@ -17,7 +17,6 @@ export class DayService {
   }
 
   updateDay(dayId: string, day: any) {
-    console.log(dayId);
     const url = 'http://localhost:3100/api/day/' + dayId;
     return this.http.put(url, day).map((response: Response) => {
       return response.json();
