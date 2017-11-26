@@ -13,6 +13,8 @@ module.exports = function(app) {
   function updateUser(req, res) {
     let user = req.body;
     let userId = user._id;
+    console.log(user);
+    console.log(userId);
     userModel
       .updateUser(userId, user)
       .then(function(user) {
