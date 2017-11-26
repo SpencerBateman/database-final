@@ -41,15 +41,26 @@ export class SettingsComponent implements OnInit {
     this.lookingFors = ['Female', 'Male'];
   }
 
-  updateUser() {
+  saveChanges() {
     this.user.email = this.email;
     this.user.firstName = this.firstName;
     this.user.age = this.age;
     this.user.bio = this.bio;
     this.user.gender = this.gender;
     this.user.lookingFor = this.lookingFor;
+  }
+
+  updateUser() {
+    this.saveChanges();
     this.userService.updateUser(this.userId, this.user).subscribe(() => {
       this.router.navigate(['user/' + this.user._id]);
+    });
+  }
+
+  editSchedule() {
+    this.saveChanges();
+    this.userService.updateUser(this.userId, this.user).subscribe(() => {
+      this.router.navigate(['user/' + this.user._id + '/schedule']);
     });
   }
 }
