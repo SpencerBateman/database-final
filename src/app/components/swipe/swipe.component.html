@@ -12,12 +12,11 @@
     </div>
     <div class="user--info">
       <h3>{{potentialMatch?.firstName}}, {{potentialMatch?.age}}</h3>
-      <div class="container">
+      <p>{{potentialMatch?.bio}}</p>
         <div class="swipe--buttons row">
-          <button (click)="skip()" class='col-6 btn btn-danger'>Skip</button>
-          <button (click)="like()" class='col-6 btn btn-success'>Like</button>
+          <div class="col-6"><button (click)="skip()" class='btn btn-danger btn-user'>Skip</button></div>
+          <div class="col-6"><button (click)="like()" class='btn btn-success btn-user'>Like</button></div>
         </div>
-      </div>
     </div>
   </div>
 </div>

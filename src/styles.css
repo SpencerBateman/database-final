@@ -13,8 +13,19 @@ i.fa {
   background-size: contain;
 }
 
+.user {
+  max-width: 300px;
+  margin: auto;
+}
+
+.btn-user {
+  width: 90%;
+  color: white;
+}
+
 .user--image {
   text-align: center;
+  margin-bottom: 10px;
 }
 .user--image img {
   object-fit: cover;
