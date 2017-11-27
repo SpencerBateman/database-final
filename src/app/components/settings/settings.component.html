@@ -7,6 +7,13 @@
 <div class='container'>
   <form (ngSubmit)='updateUser()' #f='ngForm'>
     <fieldset class="form-group">
+    <p>Photo</p>
+    <div class="user--image">
+      <img src="{{user?.photo}}"/>
+    </div>
+    <input name='photo' [(ngModel)]='photo' type='text' class='form-control' placeholder='Photo URL' value="{{user?.photo}}">
+    </fieldset>
+    <fieldset class="form-group">
     <p>Email</p>
     <input name='email' [(ngModel)]='email' type='text' class='form-control' placeholder='Email' value="{{user?.email}}">
     </fieldset>

@@ -23,13 +23,17 @@ i.fa {
   color: white;
 }
 
+.btn-user:hover {
+  color: white;
+}
+
 .user--image {
   text-align: center;
   margin-bottom: 10px;
 }
 .user--image img {
   object-fit: cover;
-  max-width: 300px;
+  max-width: 100%;
   height: 300px;
   margin-top: 10px;
 }

@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit {
   gender: string;
   firstName: string;
   lookingFor: string;
+  photo: string;
   genders : string[];
   lookingFors : string[];
   email: string;

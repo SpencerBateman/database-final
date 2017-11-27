@@ -23,6 +23,13 @@
       <input name='age' [(ngModel)]='age' type='number' class='form-control' placeholder='Age'>
     </fieldset>
     <fieldset class="form-group">
+    <p>Photo</p>
+    <div [hidden]="photo == null" class="user--image">
+      <img src="{{photo}}"/>
+    </div>
+    <input name='photo' [(ngModel)]='photo' type='text' class='form-control' placeholder='Photo URL'>
+    </fieldset>
+    <fieldset class="form-group">
       <p>Bio</p>
       <textarea name='bio' [(ngModel)]='bio' type='text' class='form-control' placeholder='Bio'></textarea>
     </fieldset>
