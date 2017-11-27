@@ -46,10 +46,26 @@ module.exports = function(app) {
       .then((user) => {
         userModel.findAllUser()
           .then((users) => {
+            console.log("potential users");
+            console.log(users);
             let potential = users.filter(function (u) {
+              // this variable represents whether the potential
+              // match has already been liked
+              let alreadyLiked = false;
+
+              // if the user has no likes don't worry about it
+              if (!user.likes) {
+                // if the user does have a list of likes check
+                // to see if they are already liked
+              } else {
+                alreadyLiked = !user.likes.includes(u);
+              }
+
+              // This is a big filter that takes into account
+              // everything about the final result of users.
               return u.gender == user.lookingFor &&
                 u.lookingFor == user.gender &&
-                u._id != user._id;
+                u._id != user._id && !alreadyLiked;
             });
             res.json(potential);
           });
