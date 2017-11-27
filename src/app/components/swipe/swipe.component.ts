@@ -13,6 +13,7 @@ export class SwipeComponent implements OnInit {
   userId: string;
   user: any;
   currentListOfUsers: any;
+  potentialMatch : any;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -24,6 +25,7 @@ export class SwipeComponent implements OnInit {
         this.userService.getPotentialMatches(this.userId).subscribe((users: any) => {
           this.currentListOfUsers = users;
           console.log(this.currentListOfUsers);
+          this.potentialMatch = users[0];
         });
       });
     });

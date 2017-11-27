@@ -11,7 +11,13 @@
       <img src="https://scontent.fphl2-3.fna.fbcdn.net/v/t1.0-9/12038511_911918292194732_1632590114908054085_n.jpg?oh=00a69ecbba825e5fd4ad79e54789e398&oe=5A95EC4C" style="width: 100%;">
     </div>
     <div class="user--info">
-      <h3>{{user?.firstName}}, {{user?.age}}</h3>
+      <h3>{{potentialMatch?.firstName}}, {{potentialMatch?.age}}</h3>
+      <div class="container">
+        <div class="swipe--buttons row">
+          <button (click)="skip()" class='col-6 btn btn-danger'>Skip</button>
+          <button (click)="like()" class='col-6 btn btn-success'>Like</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

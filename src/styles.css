@@ -13,6 +13,9 @@ i.fa {
   background-size: contain;
 }
 
+.user--image {
+  text-align: center;
+}
 .user--image img {
   object-fit: cover;
   max-width: 300px;
