@@ -46,8 +46,6 @@ module.exports = function(app) {
       .then((user) => {
         userModel.findAllUser()
           .then((users) => {
-            console.log("potential users");
-            console.log(users);
             let potential = users.filter(function (u) {
               // this variable represents whether the potential
               // match has already been liked
