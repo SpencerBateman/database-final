@@ -34,11 +34,14 @@ export class SwipeComponent implements OnInit {
   }
 
   like() {
+    this.userService.like(this.userId, this.potentialMatch).subscribe(() => {
+      this.pmIndex += 1;
+      this.potentialMatch = this.currentListOfUsers[this.pmIndex]
+    });
   }
 
   skip() {
     this.pmIndex += 1;
     this.potentialMatch = this.currentListOfUsers[this.pmIndex]
-
   }
 }

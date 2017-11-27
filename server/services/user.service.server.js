@@ -10,6 +10,34 @@ module.exports = function(app) {
   app.put('/api/user/:userId/like', likeUser);
   app.post('/api/user', createUser);
   app.get('/api/user/suitors/:userId', getPotentialMatches)
+  app.put('/api/user/like/:userId', like);
+
+  function like(req, res) {
+    let userId = req.params['userId'];
+    let _match = req.body;
+    userModel
+      .findUserById(userId)
+      .then((user) => {
+        //
+        //if the array of likes is empy
+        if (!user.like) {
+          user.likes = [_match];
+        } else {
+          user.likes.push(_match);
+        }
+        if (!_match.likedBy) {
+          _match.likedBy = [user];
+        } else {
+          _match.likedBy.push(user);
+        }
+        userModel
+          .updateUser(userId, user).then(() => {
+            userModel.updateUser(_match._id, _match).then(() => {
+              res.json(user);
+            });
+          });
+      });
+  }
 
   function getPotentialMatches(req, res) {
     let userId = req.params['userId'];
@@ -31,8 +59,6 @@ module.exports = function(app) {
   function updateUser(req, res) {
     let user = req.body;
     let userId = user._id;
-    console.log(user);
-    console.log(userId);
     userModel
       .updateUser(userId, user)
       .then(function(user) {

@@ -9,6 +9,13 @@ export class UserService {
 
   constructor(private http: Http) { }
 
+  like(userId, _match) {
+    const url = 'http://localhost:3100/api/user/like/' + userId;
+    return this.http.put(url, _match).map((response: Response) => {
+      return response.json();
+    });
+  }
+
   getPotentialMatches(userId: string) {
     const url = 'http://localhost:3100/api/user/suitors/' + userId;
     return this.http.get(url).map((response: Response) => {
