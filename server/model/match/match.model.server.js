@@ -7,11 +7,14 @@ var UserModel = mongoose.model('UserModel', UserSchema);
 
 MatchModel.createMatch = createMatch;
 MatchModel.getListFromIds = getListFromIds;
+MatchModel.getMatchFromId = getMatchFromId;
 
-function getListFromIds(ids) {
-  console.log("I dones't get here");
-  console.log(ids);
 
+async function getMatchFromId(matchId) {
+  return MatchModel.find({_id: matchId});
+}
+
+async function getListFromIds(ids) {
   return MatchModel.find({_id: {$in: ids}});
 }
 
@@ -66,7 +69,5 @@ async function createMatch(userId1, userId2) {
 
   return _match;
 }
-
-
 
 module.exports = MatchModel;

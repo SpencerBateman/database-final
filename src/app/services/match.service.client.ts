@@ -16,6 +16,13 @@ export class MatchService {
       return response.json();
     });
   }
+
+  getMatchById(matchId) {
+    const url = 'http://localhost:3100/api/match/' + matchId;
+    return this.http.get(url).map((response: Response) => {
+      return response.json();
+    });
+  }
 }
 
 
