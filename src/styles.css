@@ -82,3 +82,58 @@ i.fa {
   width: 50px;
   border-radius: 500rem;
 }
+
+.convo--image {
+  object-fit: cover;
+  max-width: 100%;
+  height: 50px;
+  width: 50px;
+  border-radius: 500rem;
+}
+
+.convo__text {
+  border-radius: 15px;
+  color: white;
+  min-height: 30px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 10px;
+}
+
+.convo__text--body {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.convo__text p {
+  margin-bottom: 0px
+}
+
+.convo__text--right {
+  background: #2610e6;
+}
+
+.convo__text--left {
+  background: #e9ecef;
+  color: black;
+}
+
+.convo__input {
+  background: #e9ecef;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.convo__input fieldset {
+  width: 98%;
+}
+
+.convo__input textarea {
+  overflow: hidden;
+}
