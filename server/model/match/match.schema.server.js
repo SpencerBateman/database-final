@@ -5,7 +5,7 @@ var MatchSchema = mongoose.Schema ({
   dateLocation: {type: mongoose.Schema.Types.ObjectId, ref: 'LocationModel'},
   conversation: [{type: mongoose.Schema.Types.ObjectId, ref: 'MessageModel'}]
 
-}, {collection: 'match'});
+}, {collection: '_match'});
 
 module.exports = MatchSchema;
 

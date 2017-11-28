@@ -3,5 +3,6 @@ module.exports = function (app) {
   require('./services/user.service.server.js')(app);
   require('./services/schedule.service.server.js')(app);
   require('./services/day.service.server.js')(app);
+  require('./services/match.service.server.js')(app);
 };
 
