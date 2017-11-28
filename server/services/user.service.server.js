@@ -2,6 +2,7 @@ module.exports = (app) => {
 
   let userModel = require('../model/user/user.model.server');
   let scheduleModel = require('../model/schedule/schedule.model.server');
+  let matchModel = require('../model/match/match.model.server');
 
   app.get('/api/user/:userId', getUserById);
   app.put('/api/user/:userId', updateUser);
@@ -9,7 +10,7 @@ module.exports = (app) => {
   app.get('/api/user/:userId/swipe', getAvailableUsers);
   app.put('/api/user/:userId/like', likeUser);
   app.post('/api/user', createUser);
-  app.get('/api/user/suitors/:userId', getPotentialMatches)
+  app.get('/api/user/suitors/:userId', getPotentialMatches);
   app.put('/api/user/like/:userId', like);
 
   function like(req, res) {
@@ -30,10 +31,15 @@ module.exports = (app) => {
         } else {
           _match.likedBy.push(user);
         }
+
+        //updates users that with the like and liked settings.
         userModel
-          .updateUser(userId, user).then(() => {
-            userModel.updateUser(_match._id, _match).then(() => {
-              res.json(user);
+          .updateUser(userId, user).then((final_user1) => {
+            userModel.updateUser(_match._id, _match).then((final_user2) => {
+              if (_match.likes != null && _match.likes.includes(userId)) {
+                matchModel.createMatch(userId, _match._id).then(() => {
+                });
+              }
             });
           });
       });
@@ -49,12 +55,13 @@ module.exports = (app) => {
             let potential = users.filter(function (u) {
               // this variable represents whether the potential
               // match has already been liked
+
               let alreadyLiked = false;
 
               // if the user has no likes don't worry about it
               if (!user.likes) {
-                // if the user does have a list of likes check
-                // to see if they are already liked
+              // if the user does have a list of likes check
+              // to see if they are already liked
               } else {
                 alreadyLiked = !user.likes.includes(u);
               }
@@ -65,7 +72,9 @@ module.exports = (app) => {
                 u.lookingFor == user.gender &&
                 u._id != user._id && !alreadyLiked;
             });
+
             res.json(potential);
+
           });
       });
   }
