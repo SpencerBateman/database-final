@@ -13,7 +13,6 @@ module.exports = function(app) {
     scheduleModel
       .updateSchedule(scheduleId, schedule)
       .then(function(schedule) {
-        console.log(schedule);
         res.json(schedule);
       });
   }

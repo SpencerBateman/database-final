@@ -33,9 +33,8 @@ module.exports = (app) => {
         }
 
         //updates users that with the like and liked settings.
-        userModel
-          .updateUser(userId, user).then((final_user1) => {
-            userModel.updateUser(_match._id, _match).then((final_user2) => {
+        userModel.updateUser(userId, user).then(() => {
+            userModel.updateUser(_match._id, _match).then(() => {
               if (_match.likes != null && _match.likes.includes(userId)) {
                 matchModel.createMatch(userId, _match._id).then(() => {
                 });
@@ -43,6 +42,7 @@ module.exports = (app) => {
             });
           });
       });
+    return res.json({});
   }
 
   function getPotentialMatches(req, res) {
@@ -72,9 +72,7 @@ module.exports = (app) => {
                 u.lookingFor == user.gender &&
                 u._id != user._id && !alreadyLiked;
             });
-
             res.json(potential);
-
           });
       });
   }
