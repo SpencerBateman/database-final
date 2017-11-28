@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 var LocationSchema = mongoose.Schema ({
   name: String,
-  lat: Number,
-  lon: Number,
+  url: String,
   schedule: {type: mongoose.Schema.Types.ObjectId, ref: 'ScheduleModel'}
 
 }, {collection: 'location'});
