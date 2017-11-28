@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var MatchSchema = require('./match.schema.server');
 var MatchModel = mongoose.model("MatchModel", MatchSchema);
 var UserSchema = require('../user/user.schema.server');
@@ -6,32 +7,56 @@ var UserModel = mongoose.model('UserModel', UserSchema);
 
 MatchModel.createMatch = createMatch;
 
-function createMatch(userId1, userId2) {
-  let _match = {user1: userId1, user2: userId2};
-  UserModel.findUserById(userId1).then((user1) => {
-    UserModel.findUserById(userId2).then((user2) => {
-      if (!user1._match) {
-        user1._match.push(_match);
-      } else {
-        user1._match = [_match];
-      }
-      if (!user2._match) {
-        user2._match.push(_match);
-      } else {
-        user2._match = [_match];
-      }
-      userModel.updateUser(user1._id, user1).then((up_user_1) => {
-        console.log('user 1 update');
-        console.log(up_user_1);
-        userModel.updateUser(user2._id, user2).then((up_user_2) => {
-          console.log('user 2 update');
-          console.log(up_user_2);
-          return MatchModel.create(_match);
-        });
-      });
-    });
-  });
+async function createMatch(userId1, userId2) {
+
+  let user1;
+  let user2;
+
+  try {
+    user1 = await UserModel.findUserById(userId1);
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    user2 = await UserModel.findUserById(userId2);
+  } catch (error) {
+    console.error(error);
+  }
+
+  let _match = {user1: user1, user2: user2, dateLocation: null, conversation: null};
+
+  try {
+    _match = await MatchModel.create(_match);
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    console.log('try');
+    if (user1.matches != null) {
+      user1.matches.push(_match._id);
+    } else {
+      user1.matches = [_match._id];
+    }
+    await UserModel.updateUser(userId1, user1);
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    if (user2.matches != null) {
+      user2.matches.push(_match._id);
+    } else {
+      user2.matches = [_match._id];
+    }
+    await UserModel.updateUser(userId2, user2);
+
+  } catch (error) {
+    console.error(error);
+  }
+
+  return _match;
 }
 
 module.exports = MatchModel;
-
