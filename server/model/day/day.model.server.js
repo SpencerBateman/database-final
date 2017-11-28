@@ -35,11 +35,6 @@ function getDayById(dayId) {
 }
 
 function updateDayById(dayId, day) {
-  console.log("day Id");
-  console.log(dayId);
-
-  console.log("day");
-  console.log(day);
   var query = {_id: dayId};
   return DayModel.update(query, day);
 }
