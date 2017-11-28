@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = (app) => {
 
   let userModel = require('../model/user/user.model.server');
   let scheduleModel = require('../model/schedule/schedule.model.server');
