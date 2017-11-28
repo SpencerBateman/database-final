@@ -1,11 +1,19 @@
 var mongoose = require('mongoose');
 
 var MatchSchema = require('./match.schema.server');
-var MatchModel = mongoose.model("MatchModel", MatchSchema);
+var MatchModel = mongoose.model('MatchModel', MatchSchema);
 var UserSchema = require('../user/user.schema.server');
 var UserModel = mongoose.model('UserModel', UserSchema);
 
 MatchModel.createMatch = createMatch;
+MatchModel.getListFromIds = getListFromIds;
+
+function getListFromIds(ids) {
+  console.log("I dones't get here");
+  console.log(ids);
+
+  return MatchModel.find({_id: {$in: ids}});
+}
 
 async function createMatch(userId1, userId2) {
 
@@ -58,5 +66,7 @@ async function createMatch(userId1, userId2) {
 
   return _match;
 }
+
+
 
 module.exports = MatchModel;

@@ -1,16 +1,17 @@
 module.exports = (app) => {
 
-  let matchModel = require('../model/match/match.model.server')
-  let userModel = require('../model/user/user.model.server');
+  let MatchModel = require('../model/match/match.model.server');
 
-  //app.post('/api/match', createMatch);
+  app.post('/api/match/getList', getListOfMatches);
 
-  //function createMatch(req, res) {
-    //let users = req.body;
-    //let user1 = users.user1;
-    //let user2 = users.user2;
-    //matchModel().createMatch(user1, user2).then((_match) => {
-      //res.json(_match);
-    //});
-  //}
+  function getListOfMatches(req, res) {
+    let list = req.body;
+
+    MatchModel
+      .getListFromIds(list)
+      .then(function (matches) {
+        console.log(matches);
+        res.json(matches);
+      });
+  }
 }

@@ -9,13 +9,13 @@ export class MatchService {
 
   constructor(private http: Http) { }
 
-  //createMatch(userId1, userId2) {
-    //let userIds = {user1: userId1, user2: userId2};
-    //const url = 'http://localhost:3100/api/like'
-    //return this.htpp.post(url, userIds).map((response: Response) => {
-      //return response.json();
-    //});
-  //}
+  // this has to be a post method to have a body payload
+  getMatchListByIds(matchIds) {
+    const url = 'http://localhost:3100/api/match/getList';
+    return this.http.post(url, matchIds).map((response: Response) => {
+      return response.json();
+    });
+  }
 }
 
 
