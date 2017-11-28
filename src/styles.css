@@ -120,6 +120,13 @@ i.fa {
   color: black;
 }
 
+.convo__messages {
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-height: 350px;
+}
+
 .convo__input {
   background: #e9ecef;
   position: fixed;
@@ -136,4 +143,15 @@ i.fa {
 
 .convo__input textarea {
   overflow: hidden;
+}
+
+.convo__date {
+  background: black;
+  color: white;
+  font-size: .8rem;
+  margin-top: -16px;
+}
+
+.convo__date p {
+  margin-bottom: 0px;
 }
