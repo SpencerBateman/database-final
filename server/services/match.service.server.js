@@ -3,10 +3,11 @@ module.exports = (app) => {
   let MatchModel = require('../model/match/match.model.server');
 
   app.post('/api/match/getList', getListOfMatches);
-  app.get('/api/match/getMatchById', getMatchById);
+  app.get('/api/match/:matchId', getMatchById);
 
   function getListOfMatches(req, res) {
     let list = req.body;
+    console.log(list);
 
     MatchModel
       .getListFromIds(list)

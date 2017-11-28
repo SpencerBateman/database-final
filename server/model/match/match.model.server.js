@@ -7,10 +7,10 @@ var UserModel = mongoose.model('UserModel', UserSchema);
 
 MatchModel.createMatch = createMatch;
 MatchModel.getListFromIds = getListFromIds;
-MatchModel.getMatchFromId = getMatchFromId;
+MatchModel.getMatchById = getMatchById;
 
 
-async function getMatchFromId(matchId) {
+async function getMatchById(matchId) {
   return MatchModel.find({_id: matchId});
 }
 
