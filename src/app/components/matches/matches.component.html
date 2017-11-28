@@ -1,3 +1,32 @@
-<p>
-  matches works!
-</p>
+<nav class="navbar navbar-dark bg-primary mb-3">
+  <div class="container">
+    <a class="pull-left" [routerLink]="['/user', this.userId]"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    <a class="navbar-brand mx-auto" href="#">Matches</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="row match">
+      <div class="col-4 match--image">
+        <img src="https://picsum.photos/200/300/?random">
+      </div>
+      <div class="col-8 match--info">
+        <p>My Match</p>
+      </div>
+    </div>
+    <div class="row match">
+      <div class="col-4 match--image">
+          <img src="https://picsum.photos/200/300/?random">
+      </div>
+      <div class="col-8 match--info">
+        <p>My Match</p>
+      </div>
+    </div>
+    <div class="row match">
+      <div class="col-4 match--image">
+          <img src="https://picsum.photos/200/300/?random">
+      </div>
+      <div class="col-8 match--info">
+        <p>My Match</p>
+      </div>
+    </div>
+</div>
