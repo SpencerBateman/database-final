@@ -25,6 +25,7 @@ export class ConvoComponent implements OnInit {
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
         this.matchService.getMatchById(this.matchId).subscribe((match: any)=> {
+          console.log(this.matchId);
           this.match = match;
         });
       });

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-primary mb-3">
   <div class="container">
     <a class="pull-left" [routerLink]="['/user', userId, 'matches']"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-    <a class="navbar-brand mx-auto" href="#">Emily, 21</a><br>
+    <a class="navbar-brand mx-auto" href="#">{{match?.firstName}} , {{match?.age}}</a><br>
   </div>
   <div class="container">
     <img class="mx-auto convo--image" src="https://picsum.photos/200/300/?random">
