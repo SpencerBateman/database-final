@@ -11,7 +11,7 @@ MatchModel.getMatchById = getMatchById;
 
 
 async function getMatchById(matchId) {
-  return MatchModel.find({_id: matchId});
+  return MatchModel.findOne({_id: matchId});
 }
 
 async function getListFromIds(ids) {
