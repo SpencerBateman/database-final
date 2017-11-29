@@ -5,29 +5,14 @@
   </div>
 </nav>
 <div class="container">
-  {{user?.matches}}
-  <div class="row match">
-      <div class="col-4 match--image">
-        <img src="https://picsum.photos/200/300/?random">
-      </div>
-      <div class="col-8 match--info">
-        <p>My Match</p>
-      </div>
+  <div *ngFor="let matchedUser of matchedUsers" class="row match">
+    <div class="col-4 match--image">
+      <img src="{{matchedUser?.photo}}">
     </div>
-    <div class="row match">
-      <div class="col-4 match--image">
-          <img src="https://picsum.photos/200/300/?random">
-      </div>
+    <a [routerLink]="['/user', this.userId, 'matches', getMatchIdFromUser(matchedUser)]">
       <div class="col-8 match--info">
-        <p>My Match</p>
+        <p>{{matchedUser?.firstName}}</p>
       </div>
-    </div>
-    <div class="row match">
-      <div class="col-4 match--image">
-          <img src="https://picsum.photos/200/300/?random">
-      </div>
-      <div class="col-8 match--info">
-        <p>My Match</p>
-      </div>
-    </div>
+    </a>
+  </div>
 </div>

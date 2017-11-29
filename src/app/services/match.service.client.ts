@@ -23,6 +23,11 @@ export class MatchService {
       return response.json();
     });
   }
+
+  getUserListFromMatches(userId, matchIds) {
+    const url = 'http://localhost:3100/api/match/users/' + userId;
+    return this.http.post(url, matchIds).map((response: Response) => {
+      return response.json();
+    });
+  }
 }
-
-
