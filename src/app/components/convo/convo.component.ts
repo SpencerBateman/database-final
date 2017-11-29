@@ -14,6 +14,7 @@ export class ConvoComponent implements OnInit {
   user: any;
   matchId: string;
   match: any;
+  otherUser: any;
 
 
   constructor(private userService : UserService, private matchService : MatchService, private router : Router, private activatedRoute: ActivatedRoute) { }
@@ -26,6 +27,15 @@ export class ConvoComponent implements OnInit {
         this.user = user;
         this.matchService.getMatchById(this.matchId).subscribe((match: any)=> {
           this.match = match;
+          if(match.user1 == match.user) {
+            this.userService.findUserById(match.user2).subscribe((user1: any)=> {
+              this.otherUser = user1;
+            });
+          } else {
+            this.userService.findUserById(match.user1).subscribe((user2: any)=> {
+              this.otherUser = user2;
+            });
+          }
         });
       });
     });
