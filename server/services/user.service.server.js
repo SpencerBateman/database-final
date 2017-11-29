@@ -22,7 +22,7 @@ module.exports = (app) => {
         //if the array of likes is empy
 
       console.log(user);
-        if (user.like == null) {
+        if (user.likes == null) {
           user.likes = [_match];
         } else {
           user.likes.push(_match);
@@ -55,7 +55,7 @@ module.exports = (app) => {
   function getPotentialMatches(req, res) {
     let userId = req.params['userId'];
     userModel.findUserById(userId).then((user) => {
-      userModel.findAllUser().then((users) => {
+      userModel.findAllUser().then( async (users) => {
 
         let potential = users.filter((u) => {
           // this variable represents whether the potential
@@ -68,7 +68,6 @@ module.exports = (app) => {
           if (user.likes != null) {
 
             alreadyLiked = user.likes.indexOf(u._id) != -1;
-            console.log(alreadyLiked);
           }
 
           // This is a big filter that takes into account
@@ -77,8 +76,22 @@ module.exports = (app) => {
             u.lookingFor == user.gender &&
             u._id != user._id && !alreadyLiked;
         });
-        console.log(potential);
-        res.json(potential);
+
+        // returns a pair of the user and a day and an hour.
+        let final = potential.map(async (u) => {
+          let availability = await scheduleModel.available(user, u);
+          return(availability);
+        });
+
+        let result = await Promise.all(final);
+
+        result = result.filter((u) => {
+          return u;
+        });
+
+        console.log(result);
+
+        res.json(result);
       });
     });
   }

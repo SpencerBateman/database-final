@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service.client';
 export class SwipeComponent implements OnInit {
   userId: string;
   user: any;
-  currentListOfUsers: any;
+  currentListOfUsersWithTimes: any;
   potentialMatch : any;
   pmIndex: number;
 
@@ -25,23 +25,23 @@ export class SwipeComponent implements OnInit {
       this.userService.findUserById(this.userId).subscribe((user: any) => {
         this.user = user;
         this.userService.getPotentialMatches(this.userId).subscribe((users: any) => {
-          this.currentListOfUsers = users;
-          console.log(this.currentListOfUsers);
-          this.potentialMatch = this.currentListOfUsers[this.pmIndex];
+          this.currentListOfUsersWithTimes = users;
+          this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex];
         });
       });
     });
   }
 
   like() {
-    this.userService.like(this.userId, this.potentialMatch).subscribe(() => {
+    console.log(this.potentialMatch.user);
+    this.userService.like(this.userId, this.potentialMatch.user).subscribe(() => {
       this.pmIndex += 1;
-      this.potentialMatch = this.currentListOfUsers[this.pmIndex]
+      this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]
     });
   }
 
   skip() {
     this.pmIndex += 1;
-    this.potentialMatch = this.currentListOfUsers[this.pmIndex]
+    this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]
   }
 }
