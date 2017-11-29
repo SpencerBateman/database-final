@@ -22,8 +22,8 @@ async function createMessage(message) {
 }
 
 async function getMessagesById(matchId) {
-  console.log('hi1');
   return MessageModel.find({match: matchId});
+  // return MessageModel.find({match: matchId}, {sort: {timestamp: -1}});
 }
 
 

@@ -45,6 +45,7 @@ export class ConvoComponent implements OnInit {
       });
       this.messageService.findMessagesById(this.matchId).subscribe((messages:any)=> {
         this.messages = messages;
+        console.log(this.messages);
       })
     });
   }
