@@ -8,6 +8,12 @@ var UserModel = mongoose.model('UserModel', UserSchema);
 MatchModel.createMatch = createMatch;
 MatchModel.getListFromIds = getListFromIds;
 MatchModel.getMatchById = getMatchById;
+MatchModel.updateMatch = updateMatch;
+
+async function updateMatch(matchId, match) {
+  let query = {_id: matchId};
+  return MatchModel.update(query, match);
+}
 
 
 async function getMatchById(matchId) {

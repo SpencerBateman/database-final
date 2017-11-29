@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service.client';
 import { MatchService } from '../../services/match.service.client';
+import { MessageService } from '../../services/message.service.client';
 
 @Component({
   selector: 'app-convo',
@@ -15,9 +16,13 @@ export class ConvoComponent implements OnInit {
   matchId: string;
   match: any;
   otherUser: any;
+  messages : any;
+  message : any;
 
 
-  constructor(private userService : UserService, private matchService : MatchService, private router : Router, private activatedRoute: ActivatedRoute) { }
+
+
+  constructor(private userService : UserService, private matchService : MatchService, private messageService : MessageService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -38,6 +43,23 @@ export class ConvoComponent implements OnInit {
           }
         });
       });
+      this.messageService.findMessagesById(this.matchId).subscribe((messages:any)=> {
+        this.messages = messages;
+      })
     });
   }
-}
+
+  createMessage() {
+    const new_message = {
+      match: this.matchId,
+      sender: this.userId,
+      body : this.message,
+    };
+
+    console.log('creating message from component');
+    this.messageService.createMessage(new_message).subscribe((message) => {
+      console.log(message);
+      this.messages.push(message);
+    });
+  }
+  }

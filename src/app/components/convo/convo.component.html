@@ -133,16 +133,17 @@
 </div>
 <div class="convo__input">
   <div class="container">
-  <!-- <p>This is where we will put the text</p> -->
+  <form (ngSubmit)='createMessage()' #f='ngForm'>
   <fieldset>
       <div class="row">
         <div class="col-8">
-          <input name='' type='text' class='form-control' placeholder='Message'>
+          <input [(ngModel)]='message' name='message' type='text' class='form-control' placeholder='Message'>
         </div>
     <div class="col-4">
     <button type='submit' class='btn btn-primary'>Send</button>
     </div>
     </div>
   </fieldset>
+</form>
 </div>
 </div>

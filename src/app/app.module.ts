@@ -10,6 +10,7 @@ import { UserService } from "./services/user.service.client";
 import { ScheduleService } from "./services/schedule.service.client";
 import { DayService } from "./services/day.service.client";
 import { MatchService } from "./services/match.service.client";
+import { MessageService } from "./services/message.service.client";
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -38,7 +39,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     Routing
   ],
   // Client Side services here
-  providers: [ UserService, ScheduleService, DayService, MatchService ],
+  providers: [ UserService, ScheduleService, DayService, MatchService, MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
