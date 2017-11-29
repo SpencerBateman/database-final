@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service.client';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string;
+  email: string;
   password: string;
   errorFlag: boolean;
 
@@ -22,17 +22,12 @@ export class LoginComponent implements OnInit {
   }
 
     login(): void {
-    const user = this.userService.findUserByCredentials(this.username, this.password).subscribe((user: any) => {
-      if (user != null && this.username === user.username && this.password === user.password) {
+    const user = this.userService.findUserByCredentials(this.email, this.password).subscribe((user: any) => {
+      if (user != null && this.email === user.email && this.password === user.password) {
         this.router.navigate(['user/' + user._id]);
       } else {
         this.errorFlag = true;
       }
     });
   }
-  //login() {
-    //console.log(this.username);
-    //console.log(this.password);
-  //}
-
 }

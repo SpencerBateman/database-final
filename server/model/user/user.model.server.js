@@ -20,8 +20,8 @@ function findUserById(userId) {
   return UserModel.findOne({_id: userId});
 }
 
-function findUserByCredentials(username, password) {
-  return UserModel.findOne({username: username, password: password});
+function findUserByCredentials(email, password) {
+  return UserModel.findOne({email: email, password: password});
 }
 
 function updateUser(userId, user) {
