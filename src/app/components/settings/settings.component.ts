@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
   email: string;
   age: string;
   bio: string;
+  errorFlag : boolean;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -33,6 +34,7 @@ export class SettingsComponent implements OnInit {
         this.firstName = user.firstName;
       });
     });
+    this.errorFlag = false;
   }
 
   updateGenders() {
@@ -43,12 +45,22 @@ export class SettingsComponent implements OnInit {
   }
 
   saveChanges() {
-    this.user.email = this.email;
-    this.user.firstName = this.firstName;
-    this.user.age = this.age;
-    this.user.bio = this.bio;
-    this.user.gender = this.gender;
-    this.user.lookingFor = this.lookingFor;
+    if ((this.email != null || this.email != '') &&
+        (this.firstName != null || this.firstName != '') &&
+        (this.age != null || this.age != '') &&
+        (this.bio != null || this.bio != '') &&
+        (this.gender != null || this.gender != '') &&
+        (this.lookingFor != null || this.lookingFor != ''))
+    {
+      this.user.email = this.email;
+      this.user.firstName = this.firstName;
+      this.user.age = this.age;
+      this.user.bio = this.bio;
+      this.user.gender = this.gender;
+      this.user.lookingFor = this.lookingFor;
+    } else {
+      this.errorFlag = true;
+    }
   }
 
   updateUser() {

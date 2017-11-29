@@ -5,6 +5,9 @@
   </div>
 </nav>
 <div class='container'>
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    Something is wrong
+  </div>
   <form (ngSubmit)='updateUser()' #f='ngForm'>
     <fieldset class="form-group">
     <p>Photo</p>
