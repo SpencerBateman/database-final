@@ -32,7 +32,7 @@ export class ConvoComponent implements OnInit {
         this.user = user;
         this.matchService.getMatchById(this.matchId).subscribe((match: any)=> {
           this.match = match;
-          if(match.user1 == match.user) {
+          if(this.match.user1 == this.userId) {
             this.userService.findUserById(match.user2).subscribe((user1: any)=> {
               this.otherUser = user1;
             });
@@ -41,12 +41,12 @@ export class ConvoComponent implements OnInit {
               this.otherUser = user2;
             });
           }
+          this.messageService.findMessagesById(this.matchId).subscribe((messages:any)=> {
+            this.messages = messages;
+            console.log(this.messages);
+          });
         });
       });
-      this.messageService.findMessagesById(this.matchId).subscribe((messages:any)=> {
-        this.messages = messages;
-        console.log(this.messages);
-      })
     });
   }
 

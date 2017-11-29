@@ -1,149 +1,59 @@
 <nav class="navbar navbar-convo navbar-dark bg-primary mb-3">
   <div class="container">
-    <a class="pull-left" [routerLink]="['/user', userId, 'matches']"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    <a class="pull-left" [routerLink]="['/user', userId, 'matches']"><i class="fa fa-chevron-left"
+                                                                        aria-hidden="true"></i></a>
     <a class="navbar-brand mx-auto" href="#">{{otherUser?.firstName}} , {{otherUser?.age}}</a><br>
   </div>
   <div class="container">
     <img class="mx-auto convo--image" src={{otherUser?.photo}}>
   </div>
 </nav>
-  <div class="convo__date">
-    <div class="container text-center">
-      <p>Upcoming Date: 3pm on Friday @ The Bar</p>
-    </div>
+<div class="convo__date">
+  <div class="container text-center">
+    <p>Upcoming Date: 3pm on Friday @ The Bar</p>
   </div>
+</div>
 <div class="convo__messages">
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <div class="convo__text convo__text--left">
-        <div class="convo__text--body">
-      <p>Yo.</p>
+  <div *ngFor="let m of messages">
+    <div class="container" *ngIf="m.sender != userId">
+      <div class="row">
+        <div class="col-8">
+          <div class="convo__text convo__text--left">
+            <div class="convo__text--body">
+              <p>{{m.body}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4"></div>
+      </div>
     </div>
-    </div>
-    </div>
-    <div class="col-4"></div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
+    <div class="container" *ngIf="m.sender == userId">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8">
+          <div class="convo__text convo__text--right pull-right">
+            <div class="convo__text--body">
+              <p>{{m.body}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <div class="convo__text convo__text--left">
-        <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours..</p>
-    </div>
-    </div>
-    </div>
-    <div class="col-4"></div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
-      <div class="convo__text convo__text--right">
-          <div class="convo__text--body">
-      <p>Hello my name is Emily. I enjoy long walks on the beach and I can't wait for ours.</p>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-
 </div>
 <div class="convo__input">
   <div class="container">
-  <form (ngSubmit)='createMessage()' #f='ngForm'>
-  <fieldset>
-      <div class="row">
-        <div class="col-8">
-          <input [(ngModel)]='message' name='message' type='text' class='form-control' placeholder='Message'>
+    <form (ngSubmit)='createMessage()' #f='ngForm'>
+      <fieldset>
+        <div class="row">
+          <div class="col-8">
+            <input [(ngModel)]='message' name='message' type='text' class='form-control' placeholder='Message'>
+          </div>
+          <div class="col-4">
+            <button type='submit' class='btn btn-primary'>Send</button>
+          </div>
         </div>
-    <div class="col-4">
-    <button type='submit' class='btn btn-primary'>Send</button>
-    </div>
-    </div>
-  </fieldset>
-</form>
-</div>
+      </fieldset>
+    </form>
+  </div>
 </div>
