@@ -14,23 +14,32 @@ module.exports = (app) => {
   function like(req, res) {
     let userId = req.params['userId'];
     let _match = req.body;
-    userModel
-      .findUserById(userId)
-      .then((user) => {
-        //
+    console.log('1');
+
+    userModel.findUserById(userId).then((user) => {
+      console.log('2');
+
         //if the array of likes is empy
-        if (user.like) {
+
+      console.log(user);
+        if (user.like == null) {
           user.likes = [_match];
         } else {
           user.likes.push(_match);
         }
-        if (_match.likedBy) {
+      console.log('3');
+
+
+      if (_match.likedBy == null) {
           _match.likedBy = [user];
         } else {
           _match.likedBy.push(user);
         }
 
-        //updates users that with the like and liked settings.
+      console.log('4');
+
+
+      //updates users that with the like and liked settings.
         userModel.updateUser(userId, user).then(() => {
           userModel.updateUser(_match._id, _match).then(() => {
             if (_match.likes != null && _match.likes.includes(userId)) {
@@ -47,7 +56,6 @@ module.exports = (app) => {
     let userId = req.params['userId'];
     userModel.findUserById(userId).then((user) => {
       userModel.findAllUser().then((users) => {
-
 
         let potential = users.filter((u) => {
           // this variable represents whether the potential
