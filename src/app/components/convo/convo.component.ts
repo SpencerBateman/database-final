@@ -57,10 +57,9 @@ export class ConvoComponent implements OnInit {
       body : this.message,
     };
 
-    console.log('creating message from component');
     this.messageService.createMessage(new_message).subscribe((message) => {
-      console.log(message);
       this.messages.push(message);
+      this.message = "";
     });
   }
   }

@@ -162,3 +162,12 @@ i.fa {
 .navbar__convo {
   height: 20vh;
 }
+
+.navbar-brand {
+  color: white !important;
+}
+
+.padding {
+  height: 25px;
+  width: 100%;
+}
