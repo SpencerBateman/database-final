@@ -74,7 +74,6 @@ export class ScheduleComponent implements OnInit {
   }
 
   saveSchedule() {
-    //update all of the days here
     this.dayService.updateDay(this.mondayId, this.monday).subscribe((mon: any) => {
       this.dayService.updateDay(this.tuesdayId, this.tuesday).subscribe((tue: any) => {
         this.dayService.updateDay(this.wednesdayId, this.wednesday).subscribe((wed: any) => {

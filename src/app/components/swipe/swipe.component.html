@@ -6,13 +6,13 @@
   </div>
 </nav>
 <div class="container">
-  <div *ngIf="potentialMatch != null;else empty_content" class="user">
+  <div *ngIf="potentialMatch?.user != null;else empty_content" class="user">
     <div class="user--image">
-      <img src="{{potentialMatch?.photo}}"/>
+      <img src="{{potentialMatch?.user?.photo}}"/>
     </div>
     <div class="user--info">
-      <h3>{{potentialMatch?.firstName}}, {{potentialMatch?.age}}</h3>
-      <p>{{potentialMatch?.bio}}</p>
+      <h3>{{potentialMatch?.user?.firstName}}, {{potentialMatch?.user?.age}}</h3>
+      <p>{{potentialMatch?.user?.bio}}</p>
         <div class="swipe--buttons row">
           <div class="col-6"><button (click)="skip()" class='btn btn-danger btn-user'>Skip</button></div>
           <div class="col-6"><button (click)="like()" class='btn btn-success btn-user'>Like</button></div>
