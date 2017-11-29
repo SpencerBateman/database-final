@@ -14,6 +14,7 @@ export class MatchesComponent implements OnInit {
   user: any;
   matchesIds: any;
   matches: any;
+  matchedUsers: any;
 
   constructor(private userService : UserService, private matchService : MatchService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
@@ -25,8 +26,21 @@ export class MatchesComponent implements OnInit {
         this.matchesIds = user.matches;
         this.matchService.getMatchListByIds(this.matchesIds).subscribe((matches: any)=> {
           this.matches = matches;
+          this.matchedUsers = this.matchService.getUserListFromMatches(this.userId, this.matchesIds).subscribe((userList: any) => {
+            this.matchedUsers = userList;
+          });
         });
       });
     });
+  }
+
+  getMatchIdFromUser(otherUser) {
+    for (var i = 0; i < otherUser.matches.length; i++) {
+      for (var j = 0; j < this.user.matches.length; j++) {
+        if (otherUser.matches[i] == this.user.matches[j]) {
+          return otherUser.matches[i];
+        }
+      }
+    }
   }
 }
