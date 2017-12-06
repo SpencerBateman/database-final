@@ -20,4 +20,30 @@
     </div>
   </div>
   <ng-template #empty_content><div class="container"><p class="text-center">No more users to show.<br><span class="emoji--crying text-center">😭</span></p></div></ng-template>
+  <div [hidden]="newMatch == null">
+    <div [ngClass]="{'triggered': newMatch != 'null'}" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">You have a new match!</h5>
+            <button (click)="resetNewMatch()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="user--image">
+              <img src="{{newMatch?.photo}}"/>
+            </div>
+            <div class="user--info">
+              <h3>{{newMatch?.firstName}}, {{newMatch?.age}}</h3>
+              <p>{{newMatch?.bio}}</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Go to Match</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

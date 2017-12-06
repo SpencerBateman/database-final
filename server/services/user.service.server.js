@@ -11,45 +11,50 @@ module.exports = (app) => {
   app.get('/api/user/suitors/:userId', getPotentialMatches);
   app.put('/api/user/like/:userId', like);
 
-  function like(req, res) {
+  async function like(req, res) {
     let userId = req.params['userId'];
     let _match = req.body;
+
     console.log('1');
 
-    userModel.findUserById(userId).then((user) => {
-      console.log('2');
+    let user = await userModel.findUserById(userId);
+
+    console.log('2');
 
         //if the array of likes is empy
 
-      console.log(user);
-        if (user.likes == null) {
-          user.likes = [_match];
-        } else {
-          user.likes.push(_match);
-        }
-      console.log('3');
+    console.log(user);
+    if (user.likes == null) {
+      user.likes = [_match];
+    } else {
+      user.likes.push(_match);
+    }
+    console.log('3');
 
 
-      if (_match.likedBy == null) {
-          _match.likedBy = [user];
-        } else {
-          _match.likedBy.push(user);
-        }
+    if (_match.likedBy == null) {
+      _match.likedBy = [user];
+    } else {
+      _match.likedBy.push(user);
+    }
 
-      console.log('4');
+    console.log('4');
 
 
-      //updates users that with the like and liked settings.
-        userModel.updateUser(userId, user).then(() => {
-          userModel.updateUser(_match._id, _match).then(() => {
-            if (_match.likes != null && _match.likes.includes(userId)) {
-              matchModel.createMatch(userId, _match._id).then(() => {
-              });
-            }
+    //updates users that with the like and liked settings.
+    userModel.updateUser(userId, user).then(() => {
+      userModel.updateUser(_match._id, _match).then(() => {
+        if (_match.likes != null && _match.likes.includes(userId)) {
+          matchModel.createMatch(userId, _match._id).then((new_match) => {
+            console.log("match callback");
+            console.log(new_match);
+            return res.json(new_match);
           });
-        });
+        } else {
+          return res.json({});
+        }
       });
-    return res.json({});
+    });
   }
 
   function getPotentialMatches(req, res) {

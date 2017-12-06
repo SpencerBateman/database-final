@@ -15,11 +15,13 @@ export class SwipeComponent implements OnInit {
   currentListOfUsersWithTimes: any;
   potentialMatch : any;
   pmIndex: number;
+  newMatch : any;
 
   constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.pmIndex = 0;
+    this.newMatch = null;
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['userId'];
       this.userService.findUserById(this.userId).subscribe((user: any) => {
@@ -33,8 +35,12 @@ export class SwipeComponent implements OnInit {
   }
 
   like() {
-    console.log(this.potentialMatch.user);
-    this.userService.like(this.userId, this.potentialMatch.user).subscribe(() => {
+    // console.log(this.potentialMatch.user);
+    this.userService.like(this.userId, this.potentialMatch.user).subscribe((response) => {
+      if (Object.keys(response).length != 0) {
+        this.newMatch = this.potentialMatch.user;
+        console.log(this.newMatch);
+      }
       this.pmIndex += 1;
       this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]
     });
@@ -43,5 +49,10 @@ export class SwipeComponent implements OnInit {
   skip() {
     this.pmIndex += 1;
     this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]
+  }
+
+  resetNewMatch() {
+    this.newMatch = null;
+    console.log(this.newMatch);
   }
 }

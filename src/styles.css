@@ -171,3 +171,16 @@ i.fa {
   height: 25px;
   width: 100%;
 }
+
+.triggered {
+  display: block;
+}
+
+.modal-content {
+  border-radius: 0px;
+}
+
+.modal-title {
+  font-weight: bold;
+  color: #e9ecef;
+}
