@@ -3,7 +3,8 @@ module.exports = function(app) {
   let scheduleModel = require('../model/schedule/schedule.model.server');
   let dayModel = require('../model/day/day.model.server');
 
-  app.post('/api/schedule', createSchedule);
+  app.post('/api/scheduleUser', createScheduleForUser);
+  app.post('/api/scheduleLocation', createScheduleForLocation);
   app.get('/api/schedule/:scheduleId', getScheduleById);
   app.put('/api/schedule/:scheduleId', updateSchedule);
 
@@ -17,12 +18,16 @@ module.exports = function(app) {
       });
   }
 
-  function createSchedule(req, res) {
+  async function createScheduleForUser(req, res) {
     let user = req.body;
+    let schedule = await scheduleModel.createScheduleForUser(user);
+    return res.json(user);
+  }
 
-    scheduleModel.createSchedule(user).then(function (schedule) {
-      res.json(schedule);
-    });
+  async function createScheduleForLocation(req, res) {
+    let location = req.body;
+    let schedule = await scheduleModel.createScheduleForLocation(location);
+    return res.json(location);
   }
 
   function getScheduleById(req, res) {

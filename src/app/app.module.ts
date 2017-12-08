@@ -11,6 +11,7 @@ import { ScheduleService } from "./services/schedule.service.client";
 import { DayService } from "./services/day.service.client";
 import { MatchService } from "./services/match.service.client";
 import { MessageService } from "./services/message.service.client";
+import { LocationService } from "./services/location.service.client";
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +20,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { ConvoComponent } from './components/convo/convo.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { LocationComponent } from './components/location/location.component';
 
 @NgModule({
   // Declare components here
@@ -31,6 +33,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     MatchesComponent,
     ConvoComponent,
     ScheduleComponent,
+    LocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     Routing
   ],
   // Client Side services here
-  providers: [ UserService, ScheduleService, DayService, MatchService, MessageService ],
+  providers: [ UserService, ScheduleService, DayService, MatchService, MessageService, LocationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

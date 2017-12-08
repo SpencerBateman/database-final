@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var ScheduleSchema = mongoose.Schema ({
   _user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
+  _location: {type: mongoose.Schema.Types.ObjectId, ref: 'LocationModel'},
   mon: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},
   tue: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},
   wed: {type: mongoose.Schema.Types.ObjectId, ref: 'DayModel'},
@@ -12,4 +13,3 @@ var ScheduleSchema = mongoose.Schema ({
 }, {collection: 'schedule'});
 
 module.exports = ScheduleSchema;
-

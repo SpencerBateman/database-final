@@ -107,6 +107,8 @@ module.exports = (app) => {
     userModel
       .updateUser(userId, user)
       .then(function (user) {
+        console.log('user update');
+        console.log(user);
         res.json(user);
       });
   }
@@ -130,7 +132,7 @@ module.exports = (app) => {
       .then(function (user) {
 
         scheduleModel
-          .createSchedule(user._id)
+          .createScheduleForUser(user._id)
           .then(function (schedule) {
 
             user.schedule = schedule;

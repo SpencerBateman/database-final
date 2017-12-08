@@ -4,11 +4,11 @@ var ScheduleModel = mongoose.model("ScheduleModel", ScheduleSchema);
 var DaySchema = require('../day/day.schema.server');
 var DayModel = mongoose.model("DayModel", DaySchema);
 
-ScheduleModel.createSchedule = createSchedule;
+ScheduleModel.createScheduleForUser = createScheduleForUser;
+ScheduleModel.createScheduleForLocation = createScheduleForLocation;
 ScheduleModel.getScheduleById = getScheduleById;
 ScheduleModel.updateSchedule = updateSchedule;
 ScheduleModel.available = available;
-
 
 // returns the user with their available time added to their object.
 async function available(user1, user2) {
@@ -122,8 +122,19 @@ async function getAvailableHour(day1, day2) {
 }
 
 // Initializes and empty schedule
-async function createSchedule(userId) {
 
+async function createScheduleForUser(userId) {
+  return createSpecifiedSchedule(userId, 'user');
+
+}
+
+async function createScheduleForLocation(locationId) {
+  return createSpecifiedSchedule(locationId, 'location');
+
+}
+
+
+async function createSpecifiedSchedule(id, type) {
   let monday;
   try {
     monday = await DayModel.createDay();
@@ -173,8 +184,10 @@ async function createSchedule(userId) {
     console.error(error);
   }
 
-  let emptySchedule = {
-    "_user": userId,
+let emptySchedule;
+ if (type == 'user') {
+    emptySchedule = {
+    "_user": id,
     mon: monday,
     tue: tuesday,
     wed: wednesday,
@@ -183,6 +196,18 @@ async function createSchedule(userId) {
     sat: saturday,
     sun: sunday
   };
+  } else {
+    emptySchedule = {
+    "_location": id,
+    mon: monday,
+    tue: tuesday,
+    wed: wednesday,
+    thu: thusrday,
+    fri: friday,
+    sat: saturday,
+    sun: sunday
+  };
+  }
 
   return ScheduleModel.create(emptySchedule);
 }

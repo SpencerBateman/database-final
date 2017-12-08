@@ -7,6 +7,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { ConvoComponent } from './components/convo/convo.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { LocationComponent } from './components/location/location.component';
 
 const APP_ROUTES: Routes = [
   // Home
@@ -16,7 +17,8 @@ const APP_ROUTES: Routes = [
   {path: 'user/:userId/schedule', component : ScheduleComponent},
   {path: 'user/:userId/settings', component : SettingsComponent},
   {path: 'user/:userId/matches', component : MatchesComponent},
-  {path: 'user/:userId/matches/:matchId', component : ConvoComponent}
+  {path: 'user/:userId/matches/:matchId', component : ConvoComponent},
+  {path: 'location/create', component : LocationComponent},
 ];
 
 // Export the routes as module providers
