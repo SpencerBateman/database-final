@@ -6,8 +6,7 @@ module.exports = (app) => {
 
   app.post('/api/location', createLocation);
   app.post('/api/location/:locationId', updateLocation);
-  // app.get('/api/location/:locationId', getLocationById);
-  // app.put('/api/location/:locationId', updateLocation);
+  app.get('/api/location/:locationId', getLocationById);
 
   async function createLocation(req, res) {
     let location = {};
@@ -26,5 +25,12 @@ module.exports = (app) => {
     let newLocation = await locationModel.updateLocation(locationId, location);
     let updatedLocation = await locationModel.findLocation(locationId);
     return res.json(updatedLocation);
+  }
+
+  async function getLocationById(req, res) {
+    let locationId = req.params['locationId'];
+    let location = await locationModel.findLocation(locationId);
+    console.log(location);
+    return res.json(location);
   }
 }

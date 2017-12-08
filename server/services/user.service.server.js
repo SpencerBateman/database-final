@@ -15,11 +15,9 @@ module.exports = (app) => {
     let userId = req.params['userId'];
     let _match = req.body;
 
-    console.log('1');
 
     let user = await userModel.findUserById(userId);
 
-    console.log('2');
 
         //if the array of likes is empy
 
@@ -29,7 +27,6 @@ module.exports = (app) => {
     } else {
       user.likes.push(_match);
     }
-    console.log('3');
 
 
     if (_match.likedBy == null) {
@@ -38,7 +35,6 @@ module.exports = (app) => {
       _match.likedBy.push(user);
     }
 
-    console.log('4');
 
 
     //updates users that with the like and liked settings.
@@ -46,8 +42,6 @@ module.exports = (app) => {
       userModel.updateUser(_match._id, _match).then(() => {
         if (_match.likes != null && _match.likes.includes(userId)) {
           matchModel.createMatch(userId, _match._id).then((new_match) => {
-            console.log("match callback");
-            console.log(new_match);
             return res.json(new_match);
           });
         } else {
@@ -107,8 +101,6 @@ module.exports = (app) => {
     userModel
       .updateUser(userId, user)
       .then(function (user) {
-        console.log('user update');
-        console.log(user);
         res.json(user);
       });
   }

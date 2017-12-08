@@ -4,6 +4,8 @@ var MatchSchema = require('./match.schema.server');
 var MatchModel = mongoose.model('MatchModel', MatchSchema);
 var UserSchema = require('../user/user.schema.server');
 var UserModel = mongoose.model('UserModel', UserSchema);
+var LocationSchema = require('../location/location.schema.server');
+var LocationModel = mongoose.model('LocationModel', LocationSchema);
 
 MatchModel.createMatch = createMatch;
 MatchModel.getListFromIds = getListFromIds;
@@ -41,7 +43,10 @@ async function createMatch(userId1, userId2) {
     console.error(error);
   }
 
-  let _match = {user1: user1, user2: user2, dateLocation: null, conversation: null};
+  let dateLocation = await LocationModel.getAllLocations();
+    console.log('Date Location:');
+    console.log(dateLocation[0]);
+  let _match = {user1: user1, user2: user2, dateLocation: dateLocation[0], conversation: null};
 
   try {
     _match = await MatchModel.create(_match);
@@ -50,7 +55,6 @@ async function createMatch(userId1, userId2) {
   }
 
   try {
-    console.log('try');
     if (user1.matches != null) {
       user1.matches.push(_match._id);
     } else {

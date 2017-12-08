@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service.client';
+import { LocationService } from '../../services/location.service.client';
 
 @Component({
   selector: 'app-swipe',
@@ -16,8 +17,9 @@ export class SwipeComponent implements OnInit {
   potentialMatch : any;
   pmIndex: number;
   newMatch : any;
+  dateLocation : any;
 
-  constructor(private userService : UserService, private router : Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService : UserService, private locationService : LocationService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.pmIndex = 0;
@@ -39,7 +41,10 @@ export class SwipeComponent implements OnInit {
     this.userService.like(this.userId, this.potentialMatch.user).subscribe((response) => {
       if (Object.keys(response).length != 0) {
         this.newMatch = this.potentialMatch.user;
-        console.log(this.newMatch);
+        // this.locationService.getLocationById(this.newMatch.dateLocation).subscribe((location:any)=> {
+        //   this.dateLocation = location;
+        //   console.log(this.dateLocation);
+        // });
       }
       this.pmIndex += 1;
       this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]

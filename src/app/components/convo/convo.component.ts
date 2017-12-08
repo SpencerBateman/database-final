@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service.client';
 import { MatchService } from '../../services/match.service.client';
 import { MessageService } from '../../services/message.service.client';
+import { LocationService } from '../../services/location.service.client';
 
 @Component({
   selector: 'app-convo',
@@ -15,6 +16,7 @@ export class ConvoComponent implements OnInit {
   user: any;
   matchId: string;
   match: any;
+  dateLocation : any;
   otherUser: any;
   messages : any;
   message : any;
@@ -22,7 +24,7 @@ export class ConvoComponent implements OnInit {
 
 
 
-  constructor(private userService : UserService, private matchService : MatchService, private messageService : MessageService, private router : Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService : UserService, private matchService : MatchService, private locationService : LocationService, private messageService : MessageService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -43,7 +45,9 @@ export class ConvoComponent implements OnInit {
           }
           this.messageService.findMessagesById(this.matchId).subscribe((messages:any)=> {
             this.messages = messages;
-            console.log(this.messages);
+            this.locationService.getLocationById(this.match.dateLocation).subscribe((location:any)=> {
+              this.dateLocation = location;
+            });
           });
         });
       });

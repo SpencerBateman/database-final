@@ -23,11 +23,11 @@ export class LocationService {
     });
   }
 
-  // getLocationById(scheduleId: string) {
-  //   const url = 'http://localhost:3100/api/schedule/' + scheduleId;
-  //   return this.http.get(url).map((response: Response) => {
-  //     return response.json();
-  //   });
-  // }
+  getLocationById(locationId) {
+    const url = 'http://localhost:3100/api/location/' + locationId;
+    return this.http.get(url).map((response: Response) => {
+      return response.json();
+    });
+  }
 
 }
