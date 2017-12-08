@@ -46,7 +46,7 @@ async function createMatch(userId1, userId2) {
   let dateLocation = await LocationModel.getAllLocations();
     console.log('Date Location:');
     console.log(dateLocation[0]);
-  let _match = {user1: user1, user2: user2, dateLocation: dateLocation[0], conversation: null};
+  let _match = {user1: user1, user2: user2, dateLocation: dateLocation[0], conversation: null, user1HasBeenRated: false, user2HasBeenRated: false};
 
   try {
     _match = await MatchModel.create(_match);

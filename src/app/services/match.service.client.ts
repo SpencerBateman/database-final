@@ -30,4 +30,12 @@ export class MatchService {
       return response.json();
     });
   }
+
+  createRating(matchId, otherUserId, rating) {
+    const url = 'http://localhost:3100/api/match/rating';
+    let req = {'matchId': matchId, 'otherUserId': otherUserId, 'rating': rating};
+    return this.http.post(url, req).map((response: Response) => {
+      return response.json();
+    })
+  }
 }

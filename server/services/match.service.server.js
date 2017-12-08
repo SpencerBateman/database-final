@@ -6,6 +6,7 @@ module.exports = (app) => {
   app.post('/api/match/getList', getListOfMatches);
   app.get('/api/match/:matchId', getMatchById);
   app.post('/api/match/users/:userId', getUserListFromMatches);
+  app.post('/api/match/rating', createRating);
 
   function getListOfMatches(req, res) {
     let list = req.body;
@@ -42,5 +43,25 @@ module.exports = (app) => {
     Promise.all(final).then(function (result) {
       res.json(result);
     });
+  }
+
+  async function createRating(req, res) {
+    let matchId = req.body['matchId'];
+    let otherUserId = req.body['otherUserId'];
+    let rating = Number(req.body['rating']);
+
+    let otherUser = await UserModel.findUserById(otherUserId);
+
+    otherUser.rating = (rating + (otherUser.rating * otherUser.timesRated)) / (otherUser.timesRated + 1);
+    otherUser.timesRated += 1;
+    await UserModel.updateUser(otherUserId, otherUser);
+
+    let match = await MatchModel.getMatchById(matchId);
+    if (otherUserId == match.user1) {
+      match.user1HasBeenRated = true;
+    } else if (otherUserId = match.user2) {
+      match.user2HasBeenRated = true;
+    }
+    await MatchModel.updateMatch(matchId, match);
   }
 }

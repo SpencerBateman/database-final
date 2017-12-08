@@ -20,6 +20,7 @@ export class ConvoComponent implements OnInit {
   otherUser: any;
   messages : any;
   message : any;
+  rating : number;
 
 
 
@@ -66,4 +67,8 @@ export class ConvoComponent implements OnInit {
       this.message = "";
     });
   }
+
+  submitRating() {
+    this.matchService.createRating(this.matchId, this.otherUser._id, this.rating).subscribe(() => {});;
   }
+}
