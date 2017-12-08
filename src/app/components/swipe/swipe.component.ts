@@ -41,10 +41,11 @@ export class SwipeComponent implements OnInit {
     this.userService.like(this.userId, this.potentialMatch.user).subscribe((response) => {
       if (Object.keys(response).length != 0) {
         this.newMatch = this.potentialMatch.user;
-        // this.locationService.getLocationById(this.newMatch.dateLocation).subscribe((location:any)=> {
-        //   this.dateLocation = location;
-        //   console.log(this.dateLocation);
-        // });
+        console.log(response);
+        this.locationService.getLocationById(response.dateLocation).subscribe((location:any)=> {
+          console.log(location);
+          this.dateLocation = location;
+        });
       }
       this.pmIndex += 1;
       this.potentialMatch = this.currentListOfUsersWithTimes[this.pmIndex]
