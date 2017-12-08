@@ -41,9 +41,9 @@
     </div>
   </div>
 </div>
-<div [hidden]="(userId == match.user2 && match.user1HasBeenRated) || (userId == match.user1 && match.user2HasBeenRated)">
+<div [hidden]="(userId == match?.user2 && match?.user1HasBeenRated) || (userId == match?.user1 && match?.user2HasBeenRated)">
   <form (ngSubmit)='submitRating()' #f='ngForm'>
-    <div [ngClass]="{'triggered': (userId == match.user2 && !match.user1HasBeenRated) || (userId == match.user1 && !match.user2HasBeenRated)}" class="modal" tabindex="-1" role="dialog">
+    <div [ngClass]="{'triggered': (userId == match?.user2 && !match?.user1HasBeenRated) || (userId == match?.user1 && !match?.user2HasBeenRated)}" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">

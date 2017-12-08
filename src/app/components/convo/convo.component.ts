@@ -69,6 +69,8 @@ export class ConvoComponent implements OnInit {
   }
 
   submitRating() {
-    this.matchService.createRating(this.matchId, this.otherUser._id, this.rating).subscribe(() => {});;
+    this.matchService.createRating(this.matchId, this.otherUser._id, this.rating).subscribe((newMatch) => {
+      console.log(newMatch);
+    });;
   }
 }

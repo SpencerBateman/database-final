@@ -62,6 +62,7 @@ module.exports = (app) => {
     } else if (otherUserId = match.user2) {
       match.user2HasBeenRated = true;
     }
-    await MatchModel.updateMatch(matchId, match);
+    console.log(matchId);
+    return await MatchModel.updateMatch(matchId, match);
   }
 }
