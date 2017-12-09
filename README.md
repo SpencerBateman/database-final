@@ -24,6 +24,8 @@ Now...
 
 To get the database running type `sudo mongod`
 
+In the project directory run `mongorestore --db daterbase /dump` from your terminal
+
 To get the application's dependencies installed run `npm install` 
 
 Once the install is successful run `npm start` to start the front end server at localhost:4200
