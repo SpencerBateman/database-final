@@ -37,13 +37,10 @@ export class SwipeComponent implements OnInit {
   }
 
   like() {
-    // console.log(this.potentialMatch.user);
     this.userService.like(this.userId, this.potentialMatch.user).subscribe((response) => {
       if (Object.keys(response).length != 0) {
         this.newMatch = this.potentialMatch.user;
-        console.log(response);
         this.locationService.getLocationById(response.dateLocation).subscribe((location:any)=> {
-          console.log(location);
           this.dateLocation = location;
         });
       }
@@ -59,6 +56,5 @@ export class SwipeComponent implements OnInit {
 
   resetNewMatch() {
     this.newMatch = null;
-    console.log(this.newMatch);
   }
 }

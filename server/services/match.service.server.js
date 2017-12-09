@@ -54,7 +54,9 @@ module.exports = (app) => {
 
     otherUser.rating = (rating + (otherUser.rating * otherUser.timesRated)) / (otherUser.timesRated + 1);
     otherUser.timesRated += 1;
+
     await UserModel.updateUser(otherUserId, otherUser);
+    console.log("other user updated in service");
 
     let match = await MatchModel.getMatchById(matchId);
     if (otherUserId == match.user1) {
@@ -62,7 +64,9 @@ module.exports = (app) => {
     } else if (otherUserId = match.user2) {
       match.user2HasBeenRated = true;
     }
-    console.log(matchId);
-    return await MatchModel.updateMatch(matchId, match);
+    await MatchModel.updateMatch(matchId, match);
+    let newMatch = MatchModel.getMatchById(matchId);
+
+    return res.json(newMatch);
   }
 }
