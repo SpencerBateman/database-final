@@ -32,6 +32,13 @@ Once the install is successful run `npm start` to start the front end server at 
 
 in a separate terminal window get the server running with `nodemon server.js` which will serve at localhost:3100
 
+### Here are a few characters you can log in as
+username: rey@sw.com
+password: rey
+
+username: kylo@sw.com
+password: kylo
+
 
 ## Dev Notes
 To build for development use `ng build env=dev`
