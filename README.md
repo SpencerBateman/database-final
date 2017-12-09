@@ -9,13 +9,26 @@ given a time and location for the date. Afterwards, both people are asked to
 rate the date.  
 
 ## How to run the app locally
-To get started, type `npm install`
-When that is completed installing, run `npm start`
-In another window, run `nodemon server.js`
+Make sure you have MongoDB installed.
+You can find the download here https://docs.mongodb.com/getting-started/shell/installation/
 
-You will need to install MongoDB. Here is the install link: https://docs.mongodb.com/getting-started/shell/installation/
-After installation, run `sudo mongod` within the project directory.
+Make sure you have Node 9+ installed
+You can find it here https://nodejs.org/en/download/
 
+Make sure you have npm installed
+You can find it here http://blog.npmjs.org/post/85484771375/how-to-install-npm
+
+Now...
+
+`git clone` this repository and `cd` into the cloned folder
+
+To get the database running type `sudo mongod`
+
+To get the application's dependencies installed run `npm install` 
+
+Once the install is successful run `npm start` to start the front end server at localhost:4200
+
+in a separate terminal window get the server running with `nodemon server.js` which will serve at localhost:3100
 
 
 ## Dev Notes
