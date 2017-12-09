@@ -7,6 +7,7 @@ UserModel.findUserById = findUserById;
 UserModel.findUserByCredentials = findUserByCredentials;
 UserModel.updateUser = updateUser;
 UserModel.findAllUser = findAllUser;
+UserModel.removeUser = removeUser;
 
 function findAllUser() {
   return UserModel.find();
@@ -27,6 +28,11 @@ function findUserByCredentials(email, password) {
 function updateUser(userId, user) {
   var query = {_id: userId};
   return UserModel.update(query, user);
+}
+
+function removeUser(userId) {
+  var query = {_id: userId};
+  return UserModel.remove(query);
 }
 
 module.exports = UserModel;
