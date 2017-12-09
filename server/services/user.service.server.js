@@ -10,6 +10,7 @@ module.exports = (app) => {
   app.post('/api/user', createUser);
   app.get('/api/user/suitors/:userId', getPotentialMatches);
   app.put('/api/user/like/:userId', like);
+  app.delete('/api/user/like/:userId', removeUser);
 
   async function like(req, res) {
     let userId = req.params['userId'];
@@ -152,5 +153,12 @@ module.exports = (app) => {
         });
       return;
     }
+  }
+
+  function removeUser(req, res) {
+    var userId = req.body;
+    UserModel.removeUser(userId).then(function() {
+      res.json();
+    });
   }
 }
