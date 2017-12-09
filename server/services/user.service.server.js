@@ -18,10 +18,6 @@ module.exports = (app) => {
 
     let user = await userModel.findUserById(userId);
 
-
-        //if the array of likes is empy
-
-    console.log(user);
     if (user.likes == null) {
       user.likes = [_match];
     } else {
@@ -51,48 +47,46 @@ module.exports = (app) => {
     });
   }
 
-  function getPotentialMatches(req, res) {
+  async function getPotentialMatches(req, res) {
     let userId = req.params['userId'];
-    userModel.findUserById(userId).then((user) => {
-      userModel.findAllUser().then( async (users) => {
 
-        let potential = users.filter((u) => {
-          // this variable represents whether the potential
-          // match has already been liked
+    let user = await userModel.findUserById(userId);
 
-          let alreadyLiked = false;
+    let users = await userModel.findAllUser();
 
-          // if the user has no likes don't worry about it
+    let potential = users.filter((u) => {
+      // this variable represents whether the potential
+      // match has already been liked
 
-          if (user.likes != null) {
+      let alreadyLiked = false;
 
-            alreadyLiked = user.likes.indexOf(u._id) != -1;
-          }
+      // if the user has no likes don't worry about it
 
-          // This is a big filter that takes into account
-          // everything about the final result of users.
-          return u.gender == user.lookingFor &&
-            u.lookingFor == user.gender &&
-            u._id != user._id && !alreadyLiked;
-        });
+      if (user.likes != null) {
 
-        // returns a pair of the user and a day and an hour.
-        let final = potential.map(async (u) => {
-          let availability = await scheduleModel.available(user, u);
-          return(availability);
-        });
+        alreadyLiked = user.likes.indexOf(u._id) != -1;
+      }
 
-        let result = await Promise.all(final);
-
-        result = result.filter((u) => {
-          return u;
-        });
-
-        console.log(result);
-
-        res.json(result);
-      });
+      // This is a big filter that takes into account
+      // everything about the final result of users.
+      return u.gender == user.lookingFor &&
+        u.lookingFor == user.gender &&
+        u._id != user._id && !alreadyLiked;
     });
+
+    // returns a pair of the user and a day and an hour.
+    let final = potential.map(async (u) => {
+      let availability = await scheduleModel.available(user, u);
+      return(availability);
+    });
+
+    let result = await Promise.all(final);
+
+    result = result.filter((u) => {
+      return u;
+    });
+
+    res.json(result);
   }
 
   function updateUser(req, res) {

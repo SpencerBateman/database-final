@@ -18,12 +18,13 @@ export class SwipeComponent implements OnInit {
   pmIndex: number;
   newMatch : any;
   dateLocation : any;
+  hour: string;
+  day: string;
 
   constructor(private userService : UserService, private locationService : LocationService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.pmIndex = 0;
-    this.newMatch = null;
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['userId'];
       this.userService.findUserById(this.userId).subscribe((user: any) => {
@@ -40,6 +41,8 @@ export class SwipeComponent implements OnInit {
     this.userService.like(this.userId, this.potentialMatch.user).subscribe((response) => {
       if (Object.keys(response).length != 0) {
         this.newMatch = this.potentialMatch.user;
+        this.hour = response.hour;
+        this.day = response.day;
         this.locationService.getLocationById(response.dateLocation).subscribe((location:any)=> {
           this.dateLocation = location;
         });

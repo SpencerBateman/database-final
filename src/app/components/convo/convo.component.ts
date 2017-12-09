@@ -21,6 +21,8 @@ export class ConvoComponent implements OnInit {
   messages : any;
   message : any;
   rating : number;
+  day: string;
+  hour: string;
 
 
 
@@ -35,6 +37,10 @@ export class ConvoComponent implements OnInit {
         this.user = user;
         this.matchService.getMatchById(this.matchId).subscribe((match: any)=> {
           this.match = match;
+          console.log('match below');
+          console.log(this.match);
+          this.day = match.day;
+          this.hour = match.hour;
           if(this.match.user1 == this.userId) {
             this.userService.findUserById(match.user2).subscribe((user1: any)=> {
               this.otherUser = user1;
@@ -70,7 +76,6 @@ export class ConvoComponent implements OnInit {
 
   submitRating() {
     this.matchService.createRating(this.matchId, this.otherUser._id, this.rating).subscribe((newMatch) => {
-      console.log(newMatch);
       this.match = newMatch;
     });;
   }
