@@ -34,9 +34,11 @@ in a separate terminal window get the server running with `nodemon server.js` wh
 
 ### Here are a few characters you can log in as
 username: rey@sw.com
+
 password: rey
 
 username: kylo@sw.com
+
 password: kylo
 
 
