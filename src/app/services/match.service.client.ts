@@ -34,7 +34,6 @@ export class MatchService {
   createRating(matchId, otherUserId, rating) {
     const url = 'http://localhost:3100/api/match/rating';
     let req = {matchId: matchId, otherUserId: otherUserId, rating: rating};
-    console.log(req);
     return this.http.post(url, req).map((response: Response) => {
       return response.json();
     })
